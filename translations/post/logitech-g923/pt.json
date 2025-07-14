@@ -1,0 +1,23 @@
+{
+  "title": "📘 Por Trás do Meu Blog",
+  "paragraphs": [
+    "Criei esta página para documentar cada passo que dei ao construir o blog “Support My Journey” – um espaço onde compartilho meus sonhos e espero receber apoio da comunidade.",
+    "Desde aprender como configurar um blog, personalizar o layout, conectar o PayPal e criar um botão de doação... cada etapa foi uma experiência significativa. Quis registrar isso como uma lembrança pessoal e compartilhar com quem possa estar trilhando um caminho semelhante."
+  ],
+  "milestones_title": "🗓️ Principais Marcos",
+  "milestones": [
+    "5 de julho de 2025 – Surgiu a ideia de criar um blog pessoal de arrecadação.",
+    "5 de julho de 2025 – Site criado no Blogspot com o objetivo de arrecadar fundos para compra de equipamentos e busca de um tema apropriado.",
+    "6 de julho de 2025 – Escolha do nome do blog “Support My Journey”.",
+    "6 de julho de 2025 – Criação do logotipo e favicon em tons azul e branco.",
+    "6 de julho de 2025 – Escrita da primeira campanha de arrecadação (Logitech G923).",
+    "6 de julho de 2025 – Cadastro no PayPal e criação do botão de doação.",
+    "7 de julho de 2025 – Integração da barra de progresso, histórico de doações e política de transparência.",
+    "8 de julho de 2025 – Compra do domínio supportmyjourney.com e conexão ao Blogspot. Configuração do DNS (Cloudflare) para funcionamento correto do Blogspot e e-mails.",
+    "9 de julho de 2025 – Adicionado suporte multilíngue dentro das postagens, além do widget do Google Translate; otimização para dispositivos móveis.",
+    "9 de julho de 2025 – Continuação do refinamento do sistema multilíngue.",
+    "10 de julho de 2025 – Finalização do sistema multilíngue e remoção do widget do Google Translate devido a conflitos.",
+    "10 de julho de 2025 – Pausa... em breve adicionarei rastreamento automático de doações..."
+  ],
+  "footer": "Obrigado por visitar esta página. Espero que esta pequena jornada lhe traga inspiração ou motivação."
+}
