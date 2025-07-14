@@ -1,23 +1,26 @@
 {
-  "title": "📘 Derrière mon blog",
-  "paragraphs": [
-    "J’ai créé cette page pour documenter chaque étape de la création du blog “Support My Journey” – un endroit où je partage mes rêves et espère recevoir le soutien de la communauté.",
-    "De l’apprentissage de la création d’un blog à la personnalisation de la mise en page, en passant par la connexion à PayPal et la création d’un bouton de don... chaque étape a été une expérience significative. Je voulais garder une trace de tout cela comme souvenir personnel et le partager avec ceux qui pourraient suivre un chemin similaire."
-  ],
-  "milestones_title": "🗓️ Jalons clés",
-  "milestones": [
-    "5 juillet 2025 – L’idée de créer un blog personnel de collecte de fonds a vu le jour.",
-    "5 juillet 2025 – Site Blogspot créé dans le but de collecter des fonds pour acheter du matériel, recherche d’un thème adapté.",
-    "6 juillet 2025 – Choix du nom du blog “Support My Journey”.",
-    "6 juillet 2025 – Conception du logo et du favicon en bleu et blanc.",
-    "6 juillet 2025 – Rédaction de la première campagne de dons (Logitech G923).",
-    "6 juillet 2025 – Inscription à PayPal et création du bouton de don.",
-    "7 juillet 2025 – Intégration de la barre de progression, de l’historique des dons et de la politique de transparence.",
-    "8 juillet 2025 – Achat du domaine supportmyjourney.com et connexion à Blogspot. Configuration DNS (Cloudflare).",
-    "9 juillet 2025 – Ajout du support multilingue dans les publications et optimisation pour mobile.",
-    "9 juillet 2025 – Poursuite de l’amélioration du système multilingue.",
-    "10 juillet 2025 – Système multilingue finalisé et suppression de Google Translate.",
-    "10 juillet 2025 – Détente... suivi automatique des dons bientôt disponible..."
-  ],
-  "footer": "Merci d’avoir visité cette page. J’espère que ce petit voyage vous apportera inspiration ou éclairage."
+  "title": "🎯 Campagne de dons : Logitech G923 Driving Force + Levier",
+  "date": "🗓️ 8 juillet 2025",
+  "goalTitle": "📌 Objectif:",
+  "item": "Produit:",
+  "itemVal": "Volant Logitech G923 + Levier de vitesse",
+  "target": "Montant visé:",
+  "targetVal": "$400",
+  "status": "Statut:",
+  "statusVal": "En cours 🔄",
+  "donateTitle": "💖 Faire un don via PayPal:",
+  "donateDesc": "Entrez le montant souhaité puis cliquez pour me soutenir.",
+  "donatePlaceholder": "Montant en USD",
+  "donateBtn": "Faire un don avec PayPal",
+  "donateValidation": "Veuillez entrer un montant d'au moins $1.",
+  "processing": "Traitement...",
+  "raisedTitle": "📈 Montant collecté:",
+  "received": "Reçu:",
+  "historyTitle": "💰 Historique des dons:",
+  "noDonations": "Pas encore de dons. Soyez le premier !",
+  "proofTitle": "📷 Preuve d'achat:",
+  "proofText": "Après l'achat, je publierai de vraies photos/vidéos du colis.",
+  "policyTitle": "📜 Politique de transparence",
+  "policyText": "Campagne personnelle. Tous les fonds servent au produit. Reçus publiés. Surplus rapporté.",
+  "thanks": "Merci de soutenir mon parcours ! 💘<br /> Chaque geste compte."
 }

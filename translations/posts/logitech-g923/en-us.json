@@ -1,23 +1,26 @@
 {
-  "title": "📘 Behind My Blog",
-  "paragraphs": [
-    "I created this page to document every step I’ve taken in building the “Support My Journey” blog – a place where I share my dreams and hope to receive support from the community.",
-    "From learning how to set up a blog, customizing the layout, connecting PayPal, and creating a donation button... each step has been a meaningful experience. I wanted to keep track of it as a personal reminder and share it with anyone who might be walking a similar path."
-  ],
-  "milestones_title": "🗓️ Key Milestones",
-  "milestones": [
-    "July 5, 2025 – Came up with the idea to create a personal fundraising blog.",
-    "July 5, 2025 – Created the Blogspot site with the goal of raising funds to purchase equipment, searched for a suitable theme.",
-    "July 6, 2025 – Chose the blog name “Support My Journey”.",
-    "July 6, 2025 – Designed the logo and favicon in blue-white tones.",
-    "July 6, 2025 – Wrote the first fundraising campaign (Logitech G923).",
-    "July 6, 2025 – Registered PayPal and created the donation button.",
-    "July 7, 2025 – Integrated progress bar, donation history, and transparency policy.",
-    "July 8, 2025 – Purchased domain supportmyjourney.com and connected it to Blogspot. Configured DNS (Cloudflare) so Blogspot and Mail can function properly.",
-    "July 9, 2025 – Added multilingual support inside posts alongside Google Translate widget; optimized for mobile.",
-    "July 9, 2025 – Continued refining multilingual system.",
-    "July 10, 2025 – Finalized multilingual system and removed Google Translate widget due to conflict with in-post system.",
-    "July 10, 2025 – Relax... I’ll continue updating with automatic donation tracking soon..."
-  ],
-  "footer": "Thank you for visiting this page. I hope this little journey gives you some insights or encouragement."
+  "title": "🎯 Fundraising Campaign: Logitech G923 Driving Force Racing Wheel + Shifter",
+  "date": "🗓️ July 8, 2025",
+  "goalTitle": "📌 Goal:",
+  "item": "Item:",
+  "itemVal": "Logitech G923 Driving Force Racing Wheel + Shifter",
+  "target": "Target Amount:",
+  "targetVal": "$400",
+  "status": "Status:",
+  "statusVal": "In progress 🔄",
+  "donateTitle": "💖 Donate via PayPal:",
+  "donateDesc": "Enter your desired amount and click below to support me via PayPal.",
+  "donatePlaceholder": "Enter amount (USD)",
+  "donateBtn": "Donate with PayPal",
+  "donateValidation": "Please enter an amount of at least $1.",
+  "processing": "Processing...",
+  "raisedTitle": "📈 Amount Raised:",
+  "received": "Received:",
+  "historyTitle": "💰 Donation History:",
+  "noDonations": "No donations yet. Be the first to contribute!",
+  "proofTitle": "📷 Proof of Purchase:",
+  "proofText": "After reaching the goal and purchasing the product, I will upload real photos or videos of the unboxing as proof.",
+  "policyTitle": "📜 Transparency Policy",
+  "policyText": "This is a personal donation campaign. All funds will go toward the stated product. Receipts will be posted. Any surplus will be reported.",
+  "thanks": "Thank you for supporting my journey! 💘<br /> Every bit of help means a lot."
 }
