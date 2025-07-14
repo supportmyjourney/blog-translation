@@ -1,0 +1,23 @@
+{
+  "title": "📘 Detrás de Mi Blog",
+  "paragraphs": [
+    "Creé esta página para documentar cada paso que he dado al construir el blog “Apoya Mi Viaje”, un lugar donde comparto mis sueños y espero recibir apoyo de la comunidad.",
+    "Desde aprender a configurar un blog, personalizar el diseño, conectar PayPal y crear un botón de donación... cada paso ha sido una experiencia significativa. Quería registrarlo como un recordatorio personal y compartirlo con quien pueda estar siguiendo un camino similar."
+  ],
+  "milestones_title": "🗓️ Hitos Clave",
+  "milestones": [
+    "5 de julio de 2025 – Surgió la idea de crear un blog personal de recaudación de fondos.",
+    "5 de julio de 2025 – Se creó el sitio en Blogspot con el objetivo de recaudar fondos para comprar equipos, se buscó un tema adecuado.",
+    "6 de julio de 2025 – Se eligió el nombre del blog “Apoya Mi Viaje”.",
+    "6 de julio de 2025 – Se diseñó el logotipo y el favicon en tonos azul y blanco.",
+    "6 de julio de 2025 – Se escribió la primera campaña de recaudación (Logitech G923).",
+    "6 de julio de 2025 – Se registró PayPal y se creó el botón de donación.",
+    "7 de julio de 2025 – Se integró la barra de progreso, el historial de donaciones y la política de transparencia.",
+    "8 de julio de 2025 – Se compró el dominio supportmyjourney.com y se conectó a Blogspot. Se configuró el DNS (Cloudflare) para que Blogspot y el correo funcionen correctamente.",
+    "9 de julio de 2025 – Se agregó soporte multilingüe dentro de las publicaciones junto con el widget de Google Translate; optimizado para móviles.",
+    "9 de julio de 2025 – Se continuó refinando el sistema multilingüe.",
+    "10 de julio de 2025 – Se finalizó el sistema multilingüe y se eliminó el widget de Google Translate debido a conflictos.",
+    "10 de julio de 2025 – A relajarse... continuaré actualizando con seguimiento automático de donaciones pronto..."
+  ],
+  "footer": "Gracias por visitar esta página. Espero que este pequeño viaje te dé algunas ideas o motivación."
+}
