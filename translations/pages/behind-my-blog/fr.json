@@ -19,4 +19,12 @@
     "10 juillet 2025 – Finalisation du système de traduction et retrait du widget Google Translate à cause de conflits.",
     "10 juillet 2025 – Pause... je continuerai bientôt avec une mise à jour automatique des dons...",
     "11 juillet 2025 – Ajout du multilingue aux pages d'information et au widget À propos.",
-    "12 juillet 2025 – Correcti
+    "12 juillet 2025 – Correction des bugs d'affichage sur petits écrans.",
+    "13 juillet 2025 – Ajout des langues coréenne et portugaise.",
+    "13 juillet 2025 – Le site prend désormais en charge 8 langues (traduction par IA). Cela a considérablement augmenté la taille du HTML. J'ai donc migré le contenu vers des fichiers JSON hébergés (GitHub + Cloudflare Pages).",
+    "14 juillet 2025 – Problèmes avec le sélecteur de langue. J’ai unifié le tout sous un bouton compact avec menu déroulant.",
+    "15 juillet 2025 – Optimisation du SEO pour faciliter la découverte du site.",
+    "15 juillet 2025 – Test de la barre de progression automatique des dons. La liste est synchronisée via Google Sheets, les données PayPal sont saisies manuellement pour des raisons de sécurité."
+  ],
+  "footer": "Merci d’avoir visité cette page. J’espère que ce petit voyage vous apportera inspiration ou encouragement."
+}

@@ -24,4 +24,7 @@
     "13. Juli 2025 – Jetzt unterstützt die Website 8 Sprachen (übersetzt mit KI). Dadurch wurde der HTML-Code im Beitrag sehr lang. Ich habe beschlossen, die Inhalte in externe JSON-Dateien (GitHub + Cloudflare Pages) auszulagern.",
     "14. Juli 2025 – Probleme mit dem Sprachumschalter. Ich habe ihn in eine kompakte Schaltfläche mit Slide-Menü umgewandelt.",
     "15. Juli 2025 – SEO optimiert, damit mehr Leute die Seite finden können.",
-    "15. Juli 2025 – Teste derzeit automatisch aktualisierte Fort
+    "15. Juli 2025 – Teste derzeit automatisch aktualisierte Fortschrittsanzeige. Die Spendenliste wird über Google Sheets synchronisiert. PayPal-Daten werden aus Sicherheitsgründen manuell übertragen."
+  ],
+  "footer": "Danke für den Besuch dieser Seite. Ich hoffe, diese kleine Reise gibt Ihnen Einblicke oder Motivation."
+}
