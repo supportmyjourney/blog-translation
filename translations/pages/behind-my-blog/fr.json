@@ -1,23 +1,22 @@
 {
   "title": "📘 Derrière mon blog",
   "paragraphs": [
-    "J’ai créé cette page pour documenter chaque étape de la création du blog “Support My Journey” – un endroit où je partage mes rêves et espère recevoir le soutien de la communauté.",
-    "De l’apprentissage de la création d’un blog à la personnalisation de la mise en page, en passant par la connexion à PayPal et la création d’un bouton de don... chaque étape a été une expérience significative. Je voulais garder une trace de tout cela comme souvenir personnel et le partager avec ceux qui pourraient suivre un chemin similaire."
+    "J’ai créé cette page pour documenter chaque étape dans la création du blog \"Support My Journey\" – un espace où je partage mes rêves et espère recevoir le soutien de la communauté.",
+    "Depuis les premiers jours à apprendre à créer un blog, personnaliser la mise en page, connecter PayPal et configurer le bouton de don... chaque étape a été une expérience significative. Je voulais garder une trace de ce parcours personnel et le partager avec d’autres personnes ayant un chemin similaire."
   ],
-  "milestones_title": "🗓️ Jalons clés",
+  "milestones_title": "🗓️ Étapes clés",
   "milestones": [
-    "5 juillet 2025 – L’idée de créer un blog personnel de collecte de fonds a vu le jour.",
-    "5 juillet 2025 – Site Blogspot créé dans le but de collecter des fonds pour acheter du matériel, recherche d’un thème adapté.",
-    "6 juillet 2025 – Choix du nom du blog “Support My Journey”.",
-    "6 juillet 2025 – Conception du logo et du favicon en bleu et blanc.",
-    "6 juillet 2025 – Rédaction de la première campagne de dons (Logitech G923).",
+    "5 juillet 2025 – Idée de créer un blog personnel de collecte de fonds.",
+    "5 juillet 2025 – Création du blog sur Blogspot pour lever des fonds pour de l’équipement, recherche d’un thème adapté.",
+    "6 juillet 2025 – Choix du nom du blog \"Support My Journey\".",
+    "6 juillet 2025 – Création du logo et du favicon dans des tons bleu et blanc.",
+    "6 juillet 2025 – Rédaction du premier article de campagne (Logitech G923).",
     "6 juillet 2025 – Inscription à PayPal et création du bouton de don.",
-    "7 juillet 2025 – Intégration de la barre de progression, de l’historique des dons et de la politique de transparence.",
-    "8 juillet 2025 – Achat du domaine supportmyjourney.com et connexion à Blogspot. Configuration DNS (Cloudflare).",
-    "9 juillet 2025 – Ajout du support multilingue dans les publications et optimisation pour mobile.",
-    "9 juillet 2025 – Poursuite de l’amélioration du système multilingue.",
-    "10 juillet 2025 – Système multilingue finalisé et suppression de Google Translate.",
-    "10 juillet 2025 – Détente... suivi automatique des dons bientôt disponible..."
-  ],
-  "footer": "Merci d’avoir visité cette page. J’espère que ce petit voyage vous apportera inspiration ou éclairage."
-}
+    "7 juillet 2025 – Intégration de la barre de progression, de l’historique des dons et d’une politique de transparence.",
+    "8 juillet 2025 – Achat du domaine supportmyjourney.com et liaison à Blogspot. Configuration DNS via Cloudflare.",
+    "9 juillet 2025 – Ajout de la prise en charge multilingue dans les articles avec widget Google Translate, optimisé pour mobile.",
+    "9 juillet 2025 – Amélioration du système de traduction dans les articles.",
+    "10 juillet 2025 – Finalisation du système de traduction et retrait du widget Google Translate à cause de conflits.",
+    "10 juillet 2025 – Pause... je continuerai bientôt avec une mise à jour automatique des dons...",
+    "11 juillet 2025 – Ajout du multilingue aux pages d'information et au widget À propos.",
+    "12 juillet 2025 – Correcti

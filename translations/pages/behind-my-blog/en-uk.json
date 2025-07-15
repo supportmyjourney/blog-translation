@@ -1,23 +1,30 @@
 {
   "title": "📘 Behind My Blog",
   "paragraphs": [
-    "I created this page to document every step I’ve taken in building the “Support My Journey” blog – a space where I share my aspirations and hope to receive support from the community.",
-    "From learning how to set up a blog, customising the layout, connecting PayPal, and creating a donation button... each stage has been a meaningful experience. I wanted to keep a record of it as a personal reminder and share it with anyone who might be on a similar journey."
+    "I created this page to document every step I took in building the \"Support My Journey\" blog – a space where I share my dreams and hope to receive support from the community.",
+    "From the early days of learning how to start a blog, customising the layout, connecting PayPal, and setting up the donation button... each step was a meaningful experience. I wanted to record it as a personal reminder and share it with anyone who might be on a similar journey."
   ],
   "milestones_title": "🗓️ Key Milestones",
   "milestones": [
     "5 July 2025 – Came up with the idea to create a personal fundraising blog.",
-    "5 July 2025 – Created the Blogspot site with the goal of raising funds to purchase equipment, and searched for a suitable theme.",
-    "6 July 2025 – Chose the blog name “Support My Journey”.",
-    "6 July 2025 – Designed the logo and favicon in blue and white tones.",
-    "6 July 2025 – Wrote the first fundraising campaign (Logitech G923).",
-    "6 July 2025 – Registered with PayPal and created the donation button.",
+    "5 July 2025 – Created the Blogspot site for fundraising equipment and searched for a theme.",
+    "6 July 2025 – Chose the blog name \"Support My Journey\".",
+    "6 July 2025 – Designed the website logo and favicon with blue-white tones.",
+    "6 July 2025 – Wrote the first fundraising goal post (Logitech G923).",
+    "6 July 2025 – Registered PayPal and created the donation button.",
     "7 July 2025 – Integrated progress bar, donation history, and transparency policy.",
-    "8 July 2025 – Purchased the domain supportmyjourney.com and connected it to Blogspot. Configured DNS (Cloudflare) so Blogspot and email could function properly.",
-    "9 July 2025 – Added multilingual support within posts alongside the Google Translate widget; optimised for mobile.",
-    "9 July 2025 – Continued refining the multilingual system.",
-    "10 July 2025 – Finalised the multilingual system and removed the Google Translate widget due to conflict with the in-post system.",
-    "10 July 2025 – Time for a break... I’ll continue updating with automatic donation tracking soon..."
+    "8 July 2025 – Purchased the domain supportmyjourney.com and connected it to Blogspot. Configured DNS (Cloudflare) so Blogspot and Mail could work properly.",
+    "9 July 2025 – Added multilingual support inside posts alongside Google Translate widget, optimised for mobile.",
+    "9 July 2025 – Continued refining the in-post translation system.",
+    "10 July 2025 – Finalised the translation system and removed Google Translate due to conflicts.",
+    "10 July 2025 – Took a break... I'll continue updating with automatic donation tracking soon...",
+    "11 July 2025 – Added language support for notification pages and the About widget.",
+    "12 July 2025 – Fixed display issues on small screen devices.",
+    "13 July 2025 – Added Korean and Portuguese as new languages.",
+    "13 July 2025 – Now the website supports 8 languages (translated using AI). This increased the length of in-post HTML significantly. I decided to move all content into external JSON files (via GitHub + Cloudflare Pages) for easier management.",
+    "14 July 2025 – Faced issues with the language switcher. I standardised it into a single button with a sliding dropdown for better UI and scalability.",
+    "15 July 2025 – Optimised SEO so more people can find this site.",
+    "15 July 2025 – Testing auto-updating donation progress bar. Donation list is synced via Google Sheets, but PayPal data still needs to be manually entered due to security and simplicity reasons."
   ],
-  "footer": "Thank you for visiting this page. I hope this little journey offers you some insight or encouragement."
+  "footer": "Thank you for visiting this page. I hope this little journey gives you some insights or encouragement."
 }

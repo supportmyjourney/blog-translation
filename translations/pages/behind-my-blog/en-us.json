@@ -1,23 +1,30 @@
 {
   "title": "📘 Behind My Blog",
   "paragraphs": [
-    "I created this page to document every step I’ve taken in building the “Support My Journey” blog – a place where I share my dreams and hope to receive support from the community.",
-    "From learning how to set up a blog, customizing the layout, connecting PayPal, and creating a donation button... each step has been a meaningful experience. I wanted to keep track of it as a personal reminder and share it with anyone who might be walking a similar path."
+    "I created this page to document every step I took in building the \"Support My Journey\" blog – a space where I share my dreams and hope to receive support from the community.",
+    "From the early days of learning how to start a blog, customizing the layout, connecting PayPal, and setting up the donation button... each step was a meaningful experience. I wanted to record it as a personal reminder and share it with anyone who might be on a similar journey."
   ],
   "milestones_title": "🗓️ Key Milestones",
   "milestones": [
     "July 5, 2025 – Came up with the idea to create a personal fundraising blog.",
-    "July 5, 2025 – Created the Blogspot site with the goal of raising funds to purchase equipment, searched for a suitable theme.",
-    "July 6, 2025 – Chose the blog name “Support My Journey”.",
-    "July 6, 2025 – Designed the logo and favicon in blue-white tones.",
-    "July 6, 2025 – Wrote the first fundraising campaign (Logitech G923).",
+    "July 5, 2025 – Created the Blogspot site for fundraising equipment and searched for a theme.",
+    "July 6, 2025 – Chose the blog name \"Support My Journey\".",
+    "July 6, 2025 – Designed the website logo and favicon with blue-white tones.",
+    "July 6, 2025 – Wrote the first fundraising goal post (Logitech G923).",
     "July 6, 2025 – Registered PayPal and created the donation button.",
     "July 7, 2025 – Integrated progress bar, donation history, and transparency policy.",
-    "July 8, 2025 – Purchased domain supportmyjourney.com and connected it to Blogspot. Configured DNS (Cloudflare) so Blogspot and Mail can function properly.",
-    "July 9, 2025 – Added multilingual support inside posts alongside Google Translate widget; optimized for mobile.",
-    "July 9, 2025 – Continued refining multilingual system.",
-    "July 10, 2025 – Finalized multilingual system and removed Google Translate widget due to conflict with in-post system.",
-    "July 10, 2025 – Relax... I’ll continue updating with automatic donation tracking soon..."
+    "July 8, 2025 – Purchased the domain supportmyjourney.com and connected it to Blogspot. Configured DNS (Cloudflare) so Blogspot and Mail could work properly.",
+    "July 9, 2025 – Added multilingual support inside posts alongside Google Translate widget, optimized for mobile.",
+    "July 9, 2025 – Continued refining the in-post translation system.",
+    "July 10, 2025 – Finalized the translation system and removed Google Translate due to conflicts.",
+    "July 10, 2025 – Took a break... I'll continue updating with automatic donation tracking soon...",
+    "July 11, 2025 – Added language support for notification pages and the About widget.",
+    "July 12, 2025 – Fixed display issues on small screen devices.",
+    "July 13, 2025 – Added Korean and Portuguese as new languages.",
+    "July 13, 2025 – Now the website supports 8 languages (translated using AI). This increased the length of in-post HTML significantly. I decided to move all content into external JSON files (via GitHub + Cloudflare Pages) for easier management.",
+    "July 14, 2025 – Faced issues with the language switcher. I standardized it into a single button with a sliding dropdown for better UI and scalability.",
+    "July 15, 2025 – Optimized SEO so more people can find this site.",
+    "July 15, 2025 – Testing auto-updating donation progress bar. Donation list is synced via Google Sheets, but PayPal data still needs to be manually entered due to security and simplicity reasons."
   ],
   "footer": "Thank you for visiting this page. I hope this little journey gives you some insights or encouragement."
 }
