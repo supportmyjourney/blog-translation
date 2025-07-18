@@ -1,5 +1,3 @@
-
-
 /* 
 Template: Lummoxie 1.2
 Designer: Lauren Thompson 
@@ -750,5 +748,45 @@ body#layout #sidebar3{width: 120px;float:left;margin-left: 10px;}
   #header img {
     max-width: 80%;
     padding: 0 10px;
+  }
+}
+
+/* 🎯 Giao diện header căn giữa chuẩn */
+#header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+#header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#header h1 {
+  display: none !important; /* Ẩn tiêu đề chữ */
+}
+
+/* 🖼 Logo ảnh */
+#header img {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* 🖱 Hover logo nhẹ */
+#header img:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+/* 📱 Responsive */
+@media screen and (max-width: 768px) {
+  #header img {
+    max-width: 200px;
   }
 }
