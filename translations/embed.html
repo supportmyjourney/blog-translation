@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donation Tracker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .progress-bar-wrapper {
+      background: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 24px;
+      margin: 10px 0 20px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      text-align: center;
+      line-height: 24px;
+      color: white;
+      font-weight: bold;
+      background: #4c70ba;
+      width: 0;
+    }
+    .donation-entry {
+      padding: 6px 0;
+      border-bottom: 1px dashed #ccc;
+    }
+    .show-more-btn {
+      margin-top: 10px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="title">Donation Campaign</h2>
+  <p><strong id="goal-label">Goal:</strong> <span id="goal">$0</span></p>
+  <p><strong id="raised-label">Raised:</strong> <span id="raised">$0</span></p>
+  <div class="progress-bar-wrapper">
+    <div id="progress" class="progress-bar-fill">0%</div>
+  </div>
+  <h3 id="history-label">Recent Donations</h3>
+  <div id="donation-list"></div>
+  <div style="text-align:center">
+    <button id="show-more" class="show-more-btn">Show more</button>
+  </div>
+
+  <script>
+    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyword = urlParams.get("keyword");
+    const lang = (navigator.language || "en-us").toLowerCase();
+    const supportedLangs = ["en-us", "en-uk", "fr", "de", "es", "pt", "jp", "kr"];
+    const activeLang = supportedLangs.includes(lang) ? lang : "en-us";
+
+    const opensheet = (sheet) =>
+      `https://opensheet.elk.sh/${sheetId}/${sheet}`;
+
+    Promise.all([
+      fetch(opensheet("Targets")).then((res) => res.json()),
+      fetch(opensheet("Donations")).then((res) => res.json()),
+    ])
+      .then(([targets, donations]) => {
+        const target = targets.find((t) => t.Keyword === keyword);
+        if (!target) throw new Error("Target not found");
+
+        const content = target[activeLang]
+          ? JSON.parse(target[activeLang])
+          : {
+              title: "Donation Campaign",
+              goalTitle: "Goal",
+              raisedTitle: "Raised",
+              historyTitle: "Recent Donations",
+            };
+
+        document.getElementById("title").innerText = content.title;
+        document.getElementById("goal-label").innerText = content.goalTitle + ":";
+        document.getElementById("raised-label").innerText = content.raisedTitle + ":";
+        document.getElementById("history-label").innerText = content.historyTitle;
+
+        const goal = parseFloat(target.Goal || 0);
+        const filtered = donations.filter((d) => d.Keyword === keyword && d.Amount && d.Currency === "USD");
+        let total = 0;
+        const history = filtered.map((d) => {
+          const amount = parseFloat(d.Amount);
+          total += amount;
+          return {
+            name: d.Name || "Anonymous",
+            date: d.Date || "",
+            amount: amount.toFixed(2),
+            message: d.Message || "",
+          };
+        });
+
+        const percent = Math.min(100, Math.round((total / goal) * 100));
+        document.getElementById("goal").innerText = `$${goal}`;
+        document.getElementById("raised").innerText = `$${total.toFixed(2)} (${percent}%)`;
+        document.getElementById("progress").style.width = percent + "%";
+        document.getElementById("progress").innerText = percent + "%";
+
+        let shown = 0;
+        const showStep = 5;
+        const list = document.getElementById("donation-list");
+        const renderMore = () => {
+          const next = history.slice(shown, shown + showStep);
+          next.forEach((item) => {
+            const el = document.createElement("div");
+            el.className = "donation-entry";
+            el.innerHTML = `<strong>${item.name}</strong> - $${item.amount}<br><small>${item.date}</small><br><em>${item.message}</em>`;
+            list.appendChild(el);
+          });
+          shown += next.length;
+          if (shown >= history.length) {
+            document.getElementById("show-more").style.display = "none";
+          }
+        };
+
+        document.getElementById("show-more").onclick = renderMore;
+        renderMore();
+      })
+      .catch((err) => {
+        document.body.innerHTML = `<p style="color:red;">Failed to load donation tracker. ${err}</p>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
