@@ -1,0 +1,754 @@
+
+
+/* 
+Template: Lummoxie 1.2
+Designer: Lauren Thompson 
+Website: http://www.btemplates.com/author/nymphont
+Date:     August 22, 2011, Updated July 20, 2012
+Details: Free blogger template by Lauren Ruth Thompson, © 2012. 
+All Rights reserved. Email nymphont@yahoo.com for details. 
+
+Variable definitions
+========================
+<Variable name="bodybgColor" description="Body Background Color" type="color" default="#e5e2d4" value="#e5e2d4">
+<Variable name="headerbgColor" description="Header Background Color" type="color" default="#f1ecde" value="#f1ecde">
+<Variable name="headerBorderColor" description="Header Border Color" type="color" default="#b1b2a3" value="#b1b2a3">
+<Variable name="blogTitleColor" description="Blog Title Color" type="color" default="#5f5f5f" value="#5f5f5f">
+<Variable name="postTitleShadowColor" description="post Title Color" type="color" default="#bfbeb7" value="#bfbeb7">
+<Variable name="blogTitleShadowColor" description="Blog Title Shadow Color" type="color" default="#bfbeb7" value="#bfbeb7">
+<Variable name="descriptionTextColor" description="Description Text Color" type="color" default="#7e7f7c" value="#7e7f7c">
+<Variable name="linkbarBgColor" description="Linkbar Background Color" type="color" default="#989994" value="#989994">
+<Variable name="linkbarShadowColor" description="Linkbar Shadow Color" type="color" default="#7e7f7c" value="#7e7f7c">
+<Variable name="linkbarborder2" description="Linkbar border2" type="color" default="#d8d6ca" value="#d8d6ca">
+<Variable name="linkbarTextBgColor" description="Linkbar Text Background Color" type="color" default="#8a8986" value="#8a8986">
+<Variable name="linkbarTextColor" description="Linkbar Text Color" type="color" default="#e5e2d4" value="#e5e2d4">
+<Variable name="linkbarTextShadowColor" description="Linkbar Text Shadow Color" type="color" default="transparent" value="transparent">
+<Variable name="linkbarHoverTextBgColor" description="Linkbar Hover Text Background Color" type="color" default="#3598a3" value="#3598a3">
+<Variable name="linkbarHoverTextColor" description="Linkbar Hover Text Color" type="color" default="#eeeeee" value="#eeeeee">
+<Variable name="linkbarCurrentTextBgColor" description="Linkbar Current Text Background Color" type="color" default="#3598a3" value="#3598a3">
+<Variable name="linkbarCurrentTextColor" description="Linkbar Current Text Color" type="color" default="#f1ecde" value="#f1ecde">
+<Variable name="linkbarCurrentHoverTextBg" description="Linkbar Current Hover Text Bg" type="color" default="#7e7f79" value="#7e7f79">
+<Variable name="blogbgColor" description="Blog Background Color" type="color" default="#f4f1e2" value="#f4f1e2">
+<Variable name="blogShadowColor" description="Blog Shadow Color" type="color" default="#d8d6ca" value="#d8d6ca">
+<Variable name="postbgColor" description="Post Background Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="postBorderColor" description="Post Border Color" type="color" default="#d8d6ca" value="#d8d6ca">
+<Variable name="postTitleColor" description="Post Title Color" type="color" default="#ff2ea7" value="#ff2ea7">
+<Variable name="postTitleHoverColor" description="Post Title Hover Color" type="color" default="#72716a" value="#72716a">
+<Variable name="dateBgColor" description="Date Background Color" type="color" default="#b4afa4" value="#b4afa4">
+<Variable name="dateShadowColor" description="Date Shadow Color" type="color" default="#72716a" value="#72716a">
+<Variable name="dateTextColor" description="Date Text Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="commentTabLinkColor" description="Comment Tab Link Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="commentTabBgLinkColor" description="Comment Tab Link Bg Color" type="color" default="#b2b0a3" value="#b2b0a3">
+<Variable name="textColor" description="Text Color" type="color" default="#7e7f79" value="#7e7f79">
+<Variable name="mainLinkColor" description="Main Link Color" type="color" default="#3598a3" value="#3598a3">
+<Variable name="mainHoverLinkColor" description="Main Hover Link Color" type="color" default="#5f5f5f" value="#5f5f5f">
+<Variable name="blogQuoteColor" description="Blog Quote Text Color" type="color" default="#6b9da3" value="#6b9da3">
+<Variable name="imagebgColor" description="Photo Background Color" type="color" default="#f4f2e6" value="#f4f2e6">
+<Variable name="imageBorderColor" description="Photo Border Color" type="color" default="#dfdfd2" value="#dfdfd2">
+<Variable name="postfooterTextColor" description="Postfooter Text Color" type="color" default="#7e7f79" value="#7e7f79">
+<Variable name="postfooterLinkColor" description="Postfooter Link Color" type="color" default="#7e7f79" value="#7e7f79">
+<Variable name="blogpagerBgColor" description="Blog Pager Background Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="mainsidebarBgColor" description="Sidebar Background Color" type="color" default="transparent" value="transparent">
+<Variable name="sidebarBorderColor" description="Sidebar Border Color" type="color" default="#e5e2d4" value="#e5e2d4">
+<Variable name="sidebar1HeaderBg" description="Sidebar Header Bg Color" type="color" default="#e5e2d4" value="#e5e2d4">
+<Variable name="sidebar1HeaderBgShadow" description="Sidebar Header Bg Shadow" type="color" default="#72716a" value="#72716a">
+<Variable name="sidebar1HeaderBorder" description="Sidebar Header Border Color" type="color" default="#f1ecde" value="#f1ecde">
+<Variable name="sidebar1HeaderColor" description="Sidebar Header Color" type="color" default="#7e7f79" value="#7e7f79">
+<Variable name="sidebar1HeaderShadow" description="Sidebar Header Shadow" type="color" default="#bfbeb7" value="#bfbeb7">
+<Variable name="sidebar1TextColor" description="Sidebar Text Color" type="color" default="#7e7f79" value="#7e7f79">
+<Variable name="sidebar1LinkColor" description="Sidebar Link Color" type="color" default="#3598a3" value="#3598a3">
+<Variable name="sidebar1HoverLinkColor" description="Sidebar Hover Link Color" type="color" default="#5f5f5f" value="#5f5f5f">
+<Variable name="sidebarListLineColor" description="Sidebar List Line Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="footerHeaderColor" description="Footer Header Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="footerHeaderBg" description="Footer Header Bg Color" type="color" default="#989994" value="#989994">
+<Variable name="footerHeaderBgShadow" description="Footer Header Bg Shadow" type="color" default="#989994" value="#989994">
+<Variable name="footerHeaderShadow" description="Footer Header Shadow" type="color" default="#bfbeb7" value="#bfbeb7">
+<Variable name="footerHeaderBorder" description="Footer Header Border" type="color" default="#b1b2aa" value="#b1b2aa">
+<Variable name="footerTextColor" description="Footer Text Color" type="color" default="#72716a" value="#72716a"><Variable name="footerbgColor" description="Footer bg Color" type="color" default="#e5e2d4" value="#e5e2d4">
+<Variable name="footerBorderColor" description="Footer border Color" type="color" default="#e5e2d4" value="#e5e2d4">
+<Variable name="footerLinkColor" description="Footer Link Color" type="color" default="#fc0092" value="#fc0092">
+<Variable name="footerHoverLinkColor" description="Footer Hover Link Color" type="color" default="#3f3f3f" value="#3f3f3f">
+<Variable name="lowerbarListLineColor" description="Footer List Line Color" type="color" default="#b1b2a3" value="#b1b2a3">
+<Variable name="rmLinkBgColor" description="Read More Link Bg Color" type="color" default="#3598a3" value="#3598a3">
+<Variable name="rmLinkBorderColor" description="Read More Link Border Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="rmLinkShadowColor" description="Read More Link Shadow Color" type="color" default="#7e7f7c" value="#7e7f7c">
+<Variable name="rmLinkColor" description="Read More Link Color" type="color" default="#fffef0" value="#fffef0">
+<Variable name="rmHoverLinkColor" description="Read More Hover Link Color" type="color" default="#989994" value="#989994">
+<Variable name="blogTitleFont" description="Title Font" type="font" default="normal normal 80px Copse" value="normal normal 80px Copse" >
+<Variable name="blogDescriptionFont" description="Description Font" type="font" default="normal normal 24px Copse" value="normal normal 24px Copse" >
+<Variable name="linkbarTextFont"description="Linkbar Font" type="font" default="normal normal 20px Copse" value="normal normal 20px Copse" >
+<Variable name="postTitleFont" description="Post Title Font" type="font" default="normal normal 30px Copse" value="normal normal 30px Copse">
+<Variable name="dateHeaderFont"description="Post Date Font" type="font" default="normal normal 10px Copse" value="normal normal 10px Copse" >
+<Variable name="textFont" description="Text Font" type="font" default="normal normal 18px Arimo" value="normal normal 18px Arimo" >
+<Variable name="postfooterTextFont"description="Post Footer Text" type="font" default="normal normal 12px Arimo" value="normal normal 12px Arimo" >
+<Variable name="sidebarHeaderFont" description="Side and Footer Titles" type="font" default="normal normal 30px Copse" value="normal normal 30px Copse">
+<Variable name="sidebarFont" description="Side and Footer Text" type="font" default="normal normal 14px Arimo" value="normal normal 14px Arimo">
+*/
+body { margin:0; padding:0; text-align:center; color:$textColor; background:url()  $bodybgColor; font:$textFont; font-size:100%; width:100%; text-align:center; }
+
+#outer-wrapper { margin:0 auto; padding:0; position:relative; width:100%; word-wrap:break-word;  text-align:center; }
+
+#searchform {display: block;padding: 5px;margin:0;background:url(http://2.bp.blogspot.com/-_nGPJ2Nk9v4/VmKqAmZQemI/AAAAAAAAAM0/WD-2AaNZeeA/s000/search-1.png) no-repeat scroll center center 
+
+transparent;width:256px;height:33px;clear:both;float:right;}
+
+#searchform #st {padding:9px 3px;margin:0 0 0 24px;width: 170px;font:$textFont;font-size:12px;color:$textColor;vertical-align: top;border:none;background:transparent;}
+
+#searchform #sb {margin:0;padding:0;height:34px;width:40px;vertical-align: top;border:none;background:transparent;}
+
+#content-wrapper { margin:-60px auto 30px auto; padding:0; background:url() $blogbgColor;border:1px solid $blogShadowColor;position:relative; width:90%; text-align:center;overflow:visible; -webkit-box-shadow: 0 5px 10px -5px $blogShadowColor;
+
+               -moz-box-shadow: 0 5px 10px -5px $blogShadowColor;
+
+                    box-shadow: 0 5px 10px -5px $blogShadowColor;
+ }
+#searchbox{width:90%;clear:both;text-align:left;margin:0px auto;padding:5px 0 40px 0;z-index:1000;}
+.topmenu { background:url() $linkbarBgColor; margin:0 auto;  padding:0; position:relative; width:100%; text-align:center; }
+#linkbar .widget {margin:0px 0 5px 0;border-bottom:1px dashed $linkbarborder2;border-top:1px dashed $linkbarborder2;}
+
+#spacer { clear:both; margin:0; padding:0; }
+
+a,a:visited { color:$mainLinkColor; text-decoration:none; }
+
+a:hover,a:active,a:focus { color:$mainHoverLinkColor; text-decoration:none; }
+
+ul { list-style-type:square; }
+
+#Navbar1 { margin:0; padding:0; visibility:hidden; display:none; }
+
+#upper-wrapper { margin:0 auto; padding:0; background:url() $headerbgColor; text-align:center; width:100%;border-bottom:1px solid $headerBorderColor; -webkit-box-shadow: 0 5px 10px -5px $linkbarShadowColor;
+
+               -moz-box-shadow: 0 5px 10px -5px $linkbarShadowColor;
+
+                    box-shadow: 0 5px 10px -5px $linkbarShadowColor; 
+ }
+
+#header-wrapper { width:100%; margin:0 auto 5px auto; text-align:center; text-align:center; padding:0 0 40px;border-bottom:1px dashed $headerBorderColor;}
+
+#header { margin:30px auto 0 auto; width:90%;text-align:center; padding:0; clear:both; }
+
+#header h1 { color:$blogTitleColor; font:$blogTitleFont; line-height:1em; margin:0 0 20px 0; letter-spacing:-2px; text-shadow:-1px 1px 1px $blogTitleShadowColor, 0 3px 1px $blogTitleShadowColor; }
+#header h1 a{ color:$blogTitleColor!important;} 
+.description { color:$descriptionTextColor; font:$blogDescriptionFont; text-shadow:-1px 1px 1px $blogTitleShadowColor, 0 3px 1px $blogTitleShadowColor;  line-height:1em; clear:both; padding:0 0 50px!important; margin:5px 0 0; }
+
+#header h1 p,#header .description p { margin:0; padding:0; }
+
+#header a img { margin:0; border:0; }
+
+#PageList1 { margin:0 auto; text-decoration:none; font:$linkbarTextFont; color:$linkbarTextColor; text-align:left; letter-spacing:1px; line-height:1em; word-wrap:break-word; overflow:hidden; text-transform:capitalize; }
+
+#PageList1 ul { margin:0 auto; width:90%; padding:9px 15px; list-style-type:none; text-indent:0; word-wrap:break-word; overflow:hidden;}
+
+#PageList1 li { display:inline; }
+
+#PageList1 h2 { margin:0; padding:0; display:none; visibility:hidden; }
+
+#PageList1 li a { font-weight:400!important;-moz-border-radius:10px; -khtml-border-radius:10px; -webkit-border-radius:10px; margin:0 0 0 0px; }
+
+#PageList1 li a,#PageList1 li a:visited { padding:7px 20px; color:$linkbarTextColor; background:$linkbarTextBgColor; }
+
+#PageList1 li a:hover,#PageList1 li a:active,#PageList1 li a:focus { color:$linkbarHoverTextColor; padding:7px 20px; background:$linkbarHoverTextBgColor; }
+
+#PageList1 li.selected a,#PageList1 li.selected a:visited { color:$linkbarCurrentTextColor; padding:7px 20px; background:$linkbarCurrentTextBgColor; }
+
+#PageList1 li.selected a:active,#PageList1 li.selected a:hover,#PageList1 li.selected a:focus { color:$linkbarCurrentTextColor; padding:7px 20px; background:$linkbarCurrentHoverTextBg; }
+
+#PageList1 a img { margin:0; background:transparent; padding:0; }
+
+#linkbar {text-shadow:-1px 1px 1px $linkbarTextShadowColor, 0 3px 1px $linkbarTextShadowColor; margin:0 auto; background:url() $linkbarBgColor; border-bottom:1px solid $linkbarShadowColor;  -webkit-box-shadow: 0 5px 10px -5px $headerBorderColor;
+
+               -moz-box-shadow: 0 5px 10px -5px $headerBorderColor;
+
+                    box-shadow: 0 5px 10px -5px $headerBorderColor;
+
+text-decoration:none; font:$linkbarTextFont; color:$linkbarTextColor; text-align:center; letter-spacing:1px; line-height:1em; word-wrap:break-word;  text-transform:capitalize;padding-top:5px; }
+
+#linkbar ul { width:90%;margin:0 auto; padding:9px 15px; list-style-type:none; text-indent:0; word-wrap:break-word; overflow:hidden;  }
+
+#linkbar li { display:inline;margin: 0 auto; line-height:2em;}
+
+#linkbar h2 { margin:0; padding:0; display:none; visibility:hidden; }
+
+
+#linkbar li a,#linkbar li a:visited { padding:7px 20px; color:$linkbarTextColor; background:$linkbarTextBgColor; }
+
+#linkbar li a:hover,#linkbar li a:active,#linkbar li a:focus { color:$linkbarHoverTextColor; padding:7px 20px; background:$linkbarHoverTextBgColor; }
+
+#linkbar li.selected a,#linkbar li.selected a:visited { color:$linkbarCurrentTextColor; padding:7px 20px; background:$linkbarCurrentTextBgColor; }
+
+#linkbar li.selected a:active,#linkbar li.selected a:hover,#linkbar li.selected a:focus { color:$linkbarCurrentTextColor; padding:7px 20px; background:$linkbarCurrentHoverTextBg; }
+
+#linkbar a img { margin:0; background:transparent; padding:0; }
+
+#main-wrapper { width:70%; float:left; position:relative; margin:3px auto 0; background:$postbgColor; padding:0; text-align:center; word-wrap:break-word; overflow:visible!important; }
+
+#main { margin:0 auto; text-align:center;border-right:1px solid $sidebarBorderColor; }
+
+#main .widget { margin:0 auto; }
+
+span.date-header { color:$dateTextColor; float:left; font:$dateHeaderFont; max-width:70px; text-transform:uppercase; margin:-44px 0px -1px -68px; text-align:center; line-height:1em; overflow:visible!important; }
+
+div#date { display:block; -moz-border-radius:25px; -khtml-border-radius:25px; -webkit-border-radius:25px; min-height:40px; min-width:40px; line-height:1em; padding:8px 6px; margin:0 0 10px; text-align:center; background:$dateBgColor; overflow:visible!important;   -webkit-box-shadow: 0 15px 10px -10px $dateShadowColor;
+
+               -moz-box-shadow: 0 15px 10px -10px $dateShadowColor;
+
+                    box-shadow: 0 15px 10px -10px $dateShadowColor;float:left;
+
+ }
+
+.day { font-size:26px; text-align:center; letter-spacing:0; line-height:.8em; }
+
+.month { text-align:center; letter-spacing:1px; line-height:1em; line-height:1em; }
+
+.year { text-align:center; letter-spacing:0; line-height:1em; }
+
+.post { margin:0; line-height:1.6em!important; text-align:left; padding:30px 35px; background:$postbgColor; border-top:1px solid $postBorderColor; clear:left; }
+
+.post-body { font:$textFont; clear:both; color:$textColor; margin:-20px 0 0 0; line-height:1.6em!important; padding:0 0 20px 0; }
+
+.post-body h1, .post-body h2,.post-body h3, .post-body h4 { font:$postTitleFont; padding:0; text-align:left;  }
+
+.post h1, .post h3,.post-body-h3 { margin:0 0 10px 0;  font:$postTitleFont; padding:0; text-align:left; text-shadow:-1px 1px 1px $postTitleShadowColor, 0 2px 1px $postTitleShadowColor; }
+
+.post h3 a,.post h3 a:visited { color:$postTitleColor; text-decoration:none; }
+
+.post h3 a:hover,.post h3 a:active,.post h3 a:focus { color:$postTitleHoverColor; text-decoration:none; }
+
+.jump-link{ width:170px;margin:0 auto 10px; text-align:right; background:$rmLinkBgColor;padding:5px;   -webkit-box-shadow: 0 5px 10px -5px $rmLinkShadowColor;
+               -moz-box-shadow: 0 5px 10px -5px $rmLinkShadowColor;
+
+                    box-shadow: 0 5px 10px -5px $rmLinkShadowColor;
+}
+
+.jump-link{ font:$linkbarTextFont; text-shadow:0 0 1px $textShadowColor; margin:0 auto 20px!important; text-align:right; clear:both; text-transform:Capitalize; }
+
+.jump-link a, .jump-link a:visited{ padding:7px 20px;background:$rmLinkBgColor; color:$rmLinkColor!important; font-weight:400!important; border:1px dashed $rmLinkBorderColor;display:block;}
+
+.jump-link a:active, .jump-link a:hover, .jump-link a:focus {background:$rmHoverLinkColor; color:$rmLinkColor!important; }
+
+.post-body p { margin:0; padding:0; display:inline; height:1%; overflow:visible; }
+
+.post-body a,.post-body a:visited { color:$mainLinkColor; text-decoration:none;  }
+
+.post-body a:hover,.post-body a:active,.post-body a:focus { color:$mainHoverLinkColor; text-decoration:none; }
+
+.post ul { margin:0 0 0 20px; list-style-type:square!important; }
+
+.post ol { margin:0 0 0 20px; }
+.post-body i, .post-body em {font-family:"Georgia", Times, serif;font-style:italic!important;}
+
+.post img { border:1px solid $imageBorderColor; padding:5px;margin:0 10px;background:$imagebgColor;margin:0 10px; }
+
+.post a img {   }
+
+.post a:hover img { border:1px solid $imagebgColor!important; }
+
+.post-footer { margin:0px 0 0 0; padding:0; text-align:left; font:$postfooterTextFont; line-height:1em; color:$postfooterTextColor; }
+
+.post-footer a,.post-footer a:visited { font-weight:400!important; color:$postfooterLinkColor; text-decoration:underline; }
+
+.post-footer a:hover,.post-footer a:active,.post-footer a:focus { color:$mainHoverLinkColor; text-decoration:none; }
+
+.post-footer a img,.post-footer a:hover img,.post-footer a:active img,.post-footer a:focus img {border:1px solid $postbgColor!important; margin:0!important; padding:0!important; }
+
+span.post-comment-link { float:left; -moz-border-radius:25px; -khtml-border-radius:25px; color:$commentTabLinkColor!important; font:$dateHeaderFont; background:$commentTabBgLinkColor; padding:15px; line-height:1em;   -webkit-box-shadow: 0 15px 10px -10px $dateShadowColor;
+
+               -moz-box-shadow: 0 15px 10px -10px $dateShadowColor;
+
+                    box-shadow: 0 15px 10px -10px $dateShadowColor;margin:0 -20px -50px 0px;
+
+ }
+
+span.post-comment-link a { font-weight:400!important; color:$commentTabLinkColor!important; }
+
+#blog-pager { margin:0; padding:12px 50px; background:$blogpagerBgColor; text-align:center; overflow:hidden; letter-spacing:1px; font:$linkbarTextFont; clear:both; color:$mainLinkColor;  border-top:1px solid $postBorderColor; }
+
+#blog-pager a,#blog-pager a:visited { color:$mainLinkColor; }
+
+#blog-pager a:hover,#blog-pager a:focus,#blog-pager a:active { color:$mainHoverLinkColor; }
+
+#blog-pager-newer-link { float:right; margin:0; padding-left:3px; }
+
+#blog-pager-older-link { float:left; margin:0; padding-right:3px; }
+
+.feed-links { display:none; }
+
+#side-wrapper { width:100%; padding:0; font:$sidebarFont; word-wrap:break-word;  }
+
+#sidebar-wrapper { width:30%; word-wrap:break-word;overflow:hidden;  }
+
+.sidebar { margin:0; padding:0; text-align:left; float:left;  }
+
+#sidebar1 {  margin:3px 0 0; width:100%; font:$sidebarFont; color:$sidebar1TextColor; }
+
+#sidebar1 .widget { border-bottom:1px solid $sidebarBorderColor;  background:$mainsidebarBgColor; line-height:1.6em!important; padding:10px 30px 30px; margin:0 0 0 3px; }
+
+#sidebar1 h2 { font:$sidebarHeaderFont; text-shadow:-1px 1px 1px $sidebar1HeaderShadow, 0 3px 1px $sidebar1HeaderShadow;  text-align:left; color:$sidebar1HeaderColor; padding:15px; margin:0 -20px 10px -20px ;line-height:1em;background:$sidebar1HeaderBg;   -webkit-box-shadow: 0 5px 10px -5px $sidebar1HeaderBgShadow,  0 0px 0px 6px $sidebar1HeaderBg inset, 0 0px 0px 7px $sidebar1HeaderBorder inset;
+               -moz-box-shadow: 0 5px 10px -5px $sidebar1HeaderBgShadow,  0 0px 0px 6px $sidebar1HeaderBg inset,  0 0px 0px 7px $sidebar1HeaderBorder inset;
+
+                    box-shadow: 0 5px 10px -5px $sidebar1HeaderBgShadow, 0 0px 0px 6px $sidebar1HeaderBg inset, 0 0px 0px 7px $sidebar1HeaderBorder inset;
+               
+ }
+ 
+
+
+#lower-wrapper ul { margin:0; list-style-type:none; text-indent:0; }
+
+#side-wrapper #BlogArchive1 ul { margin:0; padding:0; line-height:1.2em!important; list-style-type:none; }
+
+#side-wrapper #BlogArchive1 li { margin:0; text-indent:10px; padding:0; line-height:1.6em!important; }
+
+#side-wrapper ul { margin:0; padding:0; list-style-type:none; text-indent:0; }
+
+#side-wrapper li { padding:5px 0; border-bottom:1px solid $sidebarListLineColor; margin:0; }
+
+#side-wrapper li:hover { padding:5px 0; border-bottom:1px dashed $sidebarListLineColor; margin:0; }
+
+#side-wrapper li a { font-weight:normal!important; }
+
+#sidebar1 a,#sidebar1 a:visited { font-weight:bold; color:$sidebar1LinkColor; text-decoration:none; }
+
+#sidebar1 a:hover,#sidebar1 a:active,#sidebar1 a:focus { text-decoration:none; color:$sidebar1HoverLinkColor; }
+
+.sidebar a img { margin:0; padding:0; }
+
+span.label-size { text-align:justify!important; }
+
+.label-size a,.label-size a:visited { -moz-border-radius:7px; -khtml-border-radius:7px; line-height:1.5em; -webkit-border-radius:7px; padding:2px 7px; background:$sidebarListLineColor; font-weight:400!important; }
+
+.label-size a:active,.label-size a:hover,.label-size a:focus { background:$mainsidebarBgColor; }
+
+blockquote { margin:5px; color:$blogQuoteColor;line-height:1em!important; text-align:left; padding:10px 20px; font:$postTitleFont; font-weight:400!important; text-shadow:-1px 1px 1px $postTitleShadowColor, 0 2px 1px $postTitleShadowColor;   }
+
+img.profile-img { 
+ float:left; margin:5px 10px 0 0!important; padding:5px 5px 0 0!important; }
+
+.profile-textblock { margin:0; padding:10px 0 10px 10px; line-height:1.6em!important; }
+
+.profile-data { margin:0; padding:0; font-weight:normal; }
+
+.profile-datablock { margin:0; padding:0; }
+
+.profile-link { margin:0; padding:0; font-weight:normal!important; }
+
+#comments-block { padding:0; }
+
+#comments { background:$postbgColor; margin:0; padding:50px 50px 0; text-align:left; color:$textColor; font:$textFont; }
+
+#comments a img { border:0; }
+
+#comments h4 { margin:0; padding:0!important; font:$postTitleFont; letter-spacing:0; }
+
+.deleted-comment { font-style:italic; color:gray; margin:3px 0; }
+
+.comment-author { margin:0; border-top:1px solid $postBorderColor; padding:15px 0 5px; display:block; }
+
+.comment-author a,.comment-author a:visited { color:$mainLinkColor; }
+
+.comment-author a:hover,.comment-author a:active,.comment-author a:focus { color:$mainHoverLinkColor; }
+
+#comments a { }
+
+.comment-body { margin:0; padding:0; }
+
+.comment-footer { margin:0 0 10px; padding:0; }
+
+.comment-timestamp,.comment-timestamp a { margin:0; padding:5px 0; text-decoration:none; }
+
+.comment-body p { margin:0; padding:0 0 5px; line-height:1.4em; }
+
+#comments ul { margin:0; padding:0; list-style-type:square; }
+
+#comments li { margin:0; padding:0; }
+
+a.comment-link { padding:0; }
+
+html&gt;body a.comment-link { padding-left:0; }
+
+
+
+#comments-block { padding: 0; }
+ 
+#comments {
+	background: $postbgColor;
+	margin: 0;
+	border-top: 1px SOLID $postBorderColor;
+	padding: 20px 50px 0;
+	text-align: left;
+	color: $textColor;
+	font: $textFont;
+	font-size: 16px!important; }
+ 
+	#comments a img { border: 0; }
+ 
+	#comments h4 {
+		margin: 0px auto 30px;
+		font: $postTitleFont;
+		text-shadow: 1px -1px 0px $blogTitleShadowColor2, -2px 2px 1px $postTitleShadowColor;
+		padding: 0;
+		text-align: left;
+		line-height: 1em; }
+ 
+.deleted-comment {
+	font-style: italic;
+	color: gray;
+	margin: 3px 0; }
+ 
+.comment-author {
+	margin: 0;
+	padding: 15px 0 0px;
+	display: block; }
+ 
+	.comment-author a,.comment-author a:visited { color: $mainLinkColor; }
+ 
+	.comment-author a:hover,.comment-author a:active,.comment-author a:focus { color: $mainHoverLinkColor; }
+ 
+.comment-body {
+	margin: 0;
+	padding: 0; }
+ 
+.comment-footer {
+	margin: 0 0 0px;
+	padding: 0; }
+ 
+.comment-timestamp,.comment-timestamp a {
+	margin: 0;
+	padding: 0px 0;
+	text-decoration: none; }
+ 
+.comment-body p {
+	margin: 0;
+	padding: 0 0 5px;
+	line-height: 1.2em; }
+ 
+#comments ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: square; }
+ 
+#comments li {
+	margin: 0;
+	padding: 0; }
+ 
+a.comment-link { padding: 0; }
+ 
+html>body a.comment-link { padding-left: 0; }
+ 
+.comments {
+	clear: both;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	line-height: 1em; }
+ 
+	.comments .comments-content {
+		margin: 16px;
+		font-weight: normal;
+		text-align: left;
+		line-height: 1.2em; }
+ 
+	.comments .comment .comment-actions { margin-bottom: 10px; }
+ 
+		.comments .comment .comment-actions a {
+			display: inline-block;
+			font-size: 12px;
+			padding: 3px 5px;
+			border: 1px solid $postBorderColor;
+			color: $textColor ;
+			text-align: center;
+			border-radius: 10px;
+			font-weight: bold;
+			background: $blogbgColor;
+			box-shadow: -1px 1px 2px $blogBorderColor;
+			margin-right: 3px; }
+ 
+			.comments .comment .comment-actions a:hover {
+				text-decoration: none;
+				color: $mainLinkColor;
+				border: 1px solid $mainLinkColor; }
+ 
+	.comments .comments-content .comment-thread ol {
+		list-style-type: none;
+		padding: 0;
+		text-align: none; }
+ 
+	.comments .comments-content .inline-thread { margin: 10px 0; }
+ 
+	.comments .comments-content .comment-thread { margin: 10px 0; }
+ 
+		.comments .comments-content .comment-thread:empty { display: none; }
+ 
+	.comments .comments-content .comment-replies {
+		margin: 8px 0 5px 40px;
+		font-size: 12px;
+		border-radius: 10px;
+		background: $blogbgColor; }
+ 
+	.comments .comments-content .comment {
+		margin: 8px;
+		padding: 8px; }
+ 
+		.comments .comments-content .comment:first-child { padding-top: 16px; }
+ 
+		.comments .comments-content .comment:last-child {
+			border-bottom: 0;
+			padding-bottom: 0; }
+ 
+	.comments .comments-content .comment-body { position: relative; }
+ 
+	.comments .comments-content .user {
+		margin: 5px auto 0 0;
+		font-style: normal; font: $linkbarTextFont;
+			font-weight: bold!important; }
+ 
+		.comments .comments-content .user a {
+			color: $mainLinkColor;
+			text-decoration: none;
+			}
+ 
+			.comments .comments-content .user a:hover { color: $mainHoverLinkColor; }
+ 
+	.comments .comments-content .icon.blog-author {
+		width: 18px;
+		height: 18px;
+		display: inline-block;
+		margin: 0 0 -4px 6px; }
+ 
+	.comments .comments-content .datetime a {
+		color: $textColor;
+		float: right;
+		font-size: 12px;
+		text-decoration: none; }
+ 
+	.comments .comments-content,
+.comments .comments-content .comment-content { margin: 0 0 8px; }
+ 
+.comment-header { margin: 10px 0px; }
+ 
+.comments .comments-content .comment-content { text-align: none; }
+ 
+.comments .comments-content .owner-actions {
+	position: absolute;
+	right: 0;
+	top: 0; }
+ 
+.comments .comments-replybox {
+	border: none;
+	height: 250px;
+	width: 100%; }
+ 
+.comments .comment-replybox-single {
+	margin-top: 5px;
+	margin-left: 48px; }
+ 
+.comments .comment-replybox-thread {  }
+ 
+.comments .comments-content .loadmore a {
+	display: block;
+	padding: 10px 16px;
+	text-align: center; }
+ 
+.comments .thread-toggle {
+	cursor: pointer;
+	display: inline-block; }
+ 
+.comments .continue { cursor: pointer; }
+ 
+	.comments .continue a {
+		display: inline-block;
+		font-size: 12px;
+		padding: 3px 5px;
+		border: 1px solid $postBorderColor;
+		color: $textColor ;
+		font-weight: bold;
+		text-align: center;
+		border-radius: 10px;
+		background: $blogbgColor;
+		box-shadow: -1px 1px 2px $blogBorderColor;
+		margin-right: 3px; }
+ 
+		.comments .continue a:hover {
+			text-decoration: none;
+			color: $mainLinkColor;
+			border: 1px solid $mainLinkColor; }
+ 
+.comments .comments-content .loadmore {
+	cursor: pointer;
+	max-height: 3em;
+	margin-top: 3em; }
+ 
+	.comments .comments-content .loadmore.loaded {
+		max-height: 0px;
+		opacity: 0;
+		overflow: hidden; }
+ 
+.comments .thread-chrome.thread-collapsed { display: none; }
+ 
+.comments .thread-toggle { display: inline-block; }
+ 
+	.comments .thread-toggle .thread-arrow {
+		display: inline-block;
+		height: 6px;
+		width: 7px;
+		overflow: visible;
+		margin: 0.3em;
+		padding-right: 4px; }
+ 
+.comments .thread-expanded .thread-arrow {
+	background: url(\"data: image/png;
+	base64,iVBORw0KGgoAAAANSUhEUgAAAAc AAAAHCAYAAADEUlfTAAAAG0lEQVR42mNgwAfKy8v/48I4FeA0AacVDFQBAP9wJkE/KhUMAAAAAElFTkSuQmCC") no-repeat scroll 0 0 transparent; }
+ 
+.comments .thread-collapsed .thread-arrow {
+	background: url(\"data: image/png;
+	base64,iVBORw0KGgoAAAANSUhEUgAAA AcAAAAHCAYAAADEUlfTAAAAJUlEQVR42mNgAILy8vL/DLgASBKnApgkVgXIkhgKiNKJ005s4gDLbCZBiSxfygAAAAB JRU5ErkJggg==") no-repeat scroll 0 0 transparent; }
+ 
+.comments .avatar-image-container {
+	float: left;
+	width: 36px;
+	max-height: 36px;
+	vertical-align: middle;
+	overflow: hidden;
+	border-radius: 10px;
+	border: 1px solid $postBorderColor;
+	margin: 20px auto 0 auto; }
+ 
+	.comments .avatar-image-container img {
+		border: 1px solid $postBorderColor;
+		box-shadow: -1px 1px 2px $blogBorderColor;
+		width: 36px;
+		border-radius: 10px; }
+ 
+.comments .comment-block {
+	margin-left: 48px;
+	padding-top: 10px;
+	border-top: 1px solid $postBorderColor;
+	position: relative; }
+ 
+#footer-wrapper { clear:both; font:$sidebarFont;background:url() $footerbgColor; display:inline; color:$footerTextColor; float:left; width:100%;
+ line-height:1.6em!important; text-align:center; margin:-70px auto 0; padding:50px 0 0;border-top:1px solid $footerBorderColor; }
+
+#lower-wrapper { width:90%; margin:0 auto; text-align:center; padding:5px; }
+
+#lowerbar-wrapper { float:right; margin:0 auto; padding:0; line-height:1.6em!important; width:60%; text-align:center; word-wrap:break-word; }
+
+#lowerbar-wrapper2 { float:left; margin:0 auto;  line-height:1.6em!important; width:40%; text-align:center; word-wrap:break-word; }
+
+.lowerbar .widget { line-height:1.6em!important; text-align:left; margin:5px; padding:0 30px 30px; }
+
+.lowerbar h2 {  font:$sidebarHeaderFont; text-shadow:-1px 1px 1px $footerHeaderShadow, 0 2px 1px $footerHeaderShadow;   text-align:right; color:$footerHeaderColor; margin:10px -20px;line-height:1em;padding:15px; background:$footerHeaderBg;  
+
+
+-webkit-box-shadow: 0 5px 10px -5px $footerHeaderBgShadow,  0 0px 0px 6px $footerHeaderBg inset, 0 0px 0px 7px $footerHeaderBorder inset;
+               -moz-box-shadow: 0 5px 10px -5px $footerHeaderBgShadow,  0 0px 0px 6px $footerHeaderBg inset,  0 0px 0px 7px $footerHeaderBorder inset;
+
+                    box-shadow: 0 5px 10px -5px $footerHeaderBgShadow, 0 0px 0px 6px $footerHeaderBg inset, 0 0px 0px 7px $footerHeaderBorder inset;
+               
+}
+
+#lower-wrapper ul { margin:0; list-style-type:none; text-indent:0; }
+
+#lower-wrapper li { padding:5px 0; border-bottom:1px solid $lowerbarListLineColor; margin:0; }
+
+#lower-wrapper li:hover { padding:5px 0; border-bottom:1px dashed $lowerbarListLineColor; margin:0; }
+
+#lower-wrapper li a { font-weight:normal!important; margin:0; padding:0; list-style-type:none; text-indent:0; }
+
+.lowerbar a,.lowerbar a:visited { color:$footerLinkColor; text-decoration:none; }
+
+.lowerbar a:hover,.lowerbar a:active,.lowerbar a:focus { text-decoration:none; color:$footerHoverLinkColor; }
+
+.lowerbar a img { margin:0; border:0!important; padding:0; }
+
+#bottom-credit { font:$postfooterTextFont; text-align:right; padding:20px 30px; margin:0 3px 3px; }
+
+#bottom-credit a,#bottom-credit a:visited { color:$footerLinkColor; text-decoration:none; }
+
+#bottom-credit a:hover,#bottom-credit a:active,#bottom-credit a:focus { text-decoration:none; color:$footerHoverLinkColor; }
+
+#spacer { clear:both; padding:0; margin:0; }
+
+ #searchbox{width:90%;clear:both;text-align:left;margin:0px 
+
+auto;padding:5px 0 40px 0;z-index:1000;}
+
+form#searchform{display: block;padding: 5px;margin:0;background:url(http://2.bp.blogspot.com/-_nGPJ2Nk9v4/VmKqAmZQemI/AAAAAAAAAM0/WD-2AaNZeeA/s000/search-1.png) no-repeat scroll center center 
+
+transparent;width:256px;height:33px;clear:both;float:right;}
+
+form#searchform #st{padding:9px 3px;margin:0 0 0 24px;width: 170px;font:$textFont;font-size:12px;color:$textColor;vertical-align: top;border:none;background:transparent;}
+
+form#searchform #sb{margin:0;padding:0;height:34px;width:40px;vertical-align: top;border:none;background:transparent;}
+
+#main .status-msg-wrap { background:$postbgColor; font-weight:normal!important; }
+
+#main .status-msg-body { background:$postbgColor; font-weight:normal!important; font-weight:normal!important; }
+
+#main .status-msg-body a { background:$postbgColor; font-weight:normal!important; }
+
+#main .status-msg-bg { background:$postbgColor; font-weight:normal!important; }
+
+#main .status-msg-border { border:0 solid $postbgColor!important; background:$postbgColor; font-weight:normal!important; }
+
+#main .status-msg-body b { background:$postbgColor; font-weight:normal!important; }
+#searchbox {width:90%;clear:both;text-align:left;margin:0px 
+
+auto;padding:5px 0 40px 0;z-index:1000;}
+
+#searchform {display: block;padding: 5px;margin:0;background:url(http://2.bp.blogspot.com/-_nGPJ2Nk9v4/VmKqAmZQemI/AAAAAAAAAM0/WD-2AaNZeeA/s000/search-1.png) no-repeat scroll center center 
+
+transparent;width:256px;height:33px;clear:both;float:right;}
+
+#searchform #st {padding:9px 3px;margin:0 0 0 24px;width: 170px;font:$textFont;font-size:12px;color:$textColor;vertical-align: top;border:none;background:transparent;}
+
+#searchform #sb {margin:0;padding:0;height:34px;width:40px;vertical-align: top;border:none;background:transparent;}
+.post-share-buttons {display:none;}
+body#layout #lower-wrapper,
+body#layout #upper-wrapper,
+body#layout #blog-wrapper,
+body#layout #outer-wrapper,
+body#layout #content-wrapper,
+body#layout #footer-wrapper {width: 760px;}
+body#layout #header,
+body#layout #linkbar2,
+body#layout #linkbar-wrapper,
+body#layout #linkbar,
+body#layout #header-wrapper{width:760px;}
+body#layout #main,
+body#layout #main-wrapper {width: 400px;}
+body#layout #searchbox {display:none;}
+body#layout #side-wrapper,
+body#layout #sidebar-wrapper {width: 260px;float:right;margin-left: 10px;}
+body#layout #sidebar2,
+body#layout #sidebar3{width: 120px;float:left;margin-left: 10px;}             
+/* 🧼 Hide the site title text and show only the logo */
+#header h1 {
+  display: none !important;
+}
+
+/* 🎯 Center the logo and maintain its aspect ratio */
+#header img {
+  display: block;
+  margin: 0 auto !important;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ✨ Hover effect for visual feedback */
+#header img:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+/* 📱 Mobile optimization: reduce logo size on smaller screens */
+@media screen and (max-width: 768px) {
+  #header img {
+    max-width: 85%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #header img {
+    max-width: 80%;
+    padding: 0 10px;
+  }
+}
