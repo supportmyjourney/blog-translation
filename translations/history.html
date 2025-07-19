@@ -45,6 +45,11 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    .error-text {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -60,6 +65,7 @@
       </thead>
       <tbody id="historyBody"></tbody>
     </table>
+    <div class="error-text" id="errorText" style="display: none;"></div>
     <button class="show-more" id="showMoreBtn" style="display: none;"></button>
   </div>
 
@@ -85,19 +91,28 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
+        // Set headers and labels
         document.getElementById("historyTitle").textContent = i18n.historyTitle || "Donation History";
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
+        // Filter donations
         allRows = donations
-          .filter(d => d.keyword === keyword)
+          .filter(d => d.keyword?.trim() === keyword)
           .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        renderRows();
+        if (allRows.length === 0) {
+          document.getElementById("errorText").style.display = "block";
+          document.getElementById("errorText").textContent = i18n.noDonations || "No donations yet.";
+        } else {
+          renderRows();
+        }
       } catch (err) {
         console.error("Failed to load history:", err);
+        document.getElementById("errorText").style.display = "block";
+        document.getElementById("errorText").textContent = "⚠️ Error loading donation history.";
       }
     }
 
@@ -138,7 +153,7 @@
       }
     }
 
-    loadHistory();
+    document.addEventListener("DOMContentLoaded", loadHistory);
   </script>
 </body>
 </html>

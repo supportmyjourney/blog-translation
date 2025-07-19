@@ -38,6 +38,10 @@
       font-size: 14px;
       color: #555;
     }
+    .error-text {
+      color: red;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -47,6 +51,7 @@
       <div class="progress-fill" id="progressFill"></div>
     </div>
     <div class="progress-text" id="progressText">$0 / $0</div>
+    <div class="error-text" id="errorText" style="display: none;"></div>
   </div>
 
   <script>
@@ -71,22 +76,27 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        const target = targets.find(t => t.keyword === keyword);
-        const filteredDonations = donations.filter(d => d.keyword === keyword);
+        const target = targets.find(t => t.keyword?.trim() === keyword);
+        if (!target) throw new Error(`Target not found for keyword: ${keyword}`);
 
+        const filteredDonations = donations.filter(d => d.keyword?.trim() === keyword);
         const raised = filteredDonations.reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
-        const goal = parseFloat(target?.goal || 0);
+        const goal = parseFloat(target.goal || 0);
 
         const percent = goal > 0 ? Math.min(100, (raised / goal) * 100) : 0;
+
+        // Update UI
         document.getElementById("progressFill").style.width = percent + "%";
         document.getElementById("progressText").textContent = `$${raised.toFixed(2)} / $${goal.toFixed(2)}`;
         document.getElementById("progressTitle").textContent = i18n.raisedTitle || "Amount Raised";
       } catch (err) {
         console.error("Failed to load progress:", err);
+        document.getElementById("errorText").style.display = "block";
+        document.getElementById("errorText").textContent = "⚠️ Error loading progress.";
       }
     }
 
-    loadProgress();
+    document.addEventListener("DOMContentLoaded", loadProgress);
   </script>
 </body>
 </html>
