@@ -1,79 +1,78 @@
-<!-- 🎯 Fundraising Progress -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation Progress</title>
   <style>
     body {
+      background: #fefeee;
       font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .progress-container {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-size: 14px;
       text-align: center;
+      margin: 0;
+      padding: 10px;
     }
     .progress-bar {
-      height: 25px;
-      background-color: #e0e0e0;
-      border-radius: 12px;
+      width: 90%;
+      height: 20px;
+      background: #eee;
+      border-radius: 10px;
+      margin: 10px auto;
       overflow: hidden;
-      margin: 15px 0;
     }
     .progress-fill {
       height: 100%;
-      background-color: #4caf50;
+      background: #4caf50;
       width: 0%;
-      transition: width 0.5s ease-in-out;
+      transition: width 0.5s;
     }
-    .amount-text {
-      margin-top: 10px;
-      font-weight: bold;
+    .progress-label {
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="progress-container">
-    <div id="progress-title">🎯 Fundraising Progress</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
-    <div class="amount-text" id="progress-amount">$0 / $0</div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
   </div>
+  <div class="progress-label" id="progressLabel">Loading...</div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const keyword = urlParams.get("keyword") || "";
-    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
+    const keyword = urlParams.get("keyword");
+
+    const targetsUrl = `https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Targets`;
+    const donationsUrl = `https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations`;
 
     async function loadProgress() {
       try {
         const [targetsRes, donationsRes] = await Promise.all([
-          fetch(`https://opensheet.elk.sh/${sheetId}/Targets`),
-          fetch(`https://opensheet.elk.sh/${sheetId}/Donations`)
+          fetch(targetsUrl),
+          fetch(donationsUrl),
         ]);
 
         const targets = await targetsRes.json();
         const donations = await donationsRes.json();
 
-        const target = targets.find(row => row.Keyword === keyword);
-        const totalDonated = donations
-          .filter(row => row.Keyword === keyword)
-          .reduce((sum, row) => sum + parseFloat(row.Amount || 0), 0);
+        const targetItem = targets.find(t => t.keyword === keyword);
+        if (!targetItem) throw new Error("Target not found");
 
-        if (!target) throw new Error("Target not found.");
+        const goal = parseFloat(targetItem.goal || 0);
+        const raised = donations
+          .filter(d => d.keyword === keyword)
+          .reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
 
-        const goal = parseFloat(target.Goal || 0);
-        const percentage = Math.min((totalDonated / goal) * 100, 100).toFixed(1);
-
-        document.getElementById("progress-fill").style.width = `${percentage}%`;
-        document.getElementById("progress-amount").textContent = `$${totalDonated.toLocaleString()} / $${goal.toLocaleString()}`;
+        const percent = Math.min(100, (raised / goal) * 100).toFixed(1);
+        document.getElementById("progressFill").style.width = percent + "%";
+        document.getElementById("progressLabel").innerText =
+          `$${raised.toFixed(2)} raised of $${goal.toFixed(2)} (${percent}%)`;
       } catch (err) {
-        document.querySelector(".progress-container").innerHTML = "⚠️ Error loading progress.";
-        conso
+        document.getElementById("progressLabel").innerText = "Error loading progress.";
+        console.error(err);
+      }
+    }
+
+    loadProgress();
+  </script>
+</body>
+</html>

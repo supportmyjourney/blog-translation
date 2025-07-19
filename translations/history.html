@@ -1,102 +1,104 @@
-<!-- 💰 Donation History -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation History</title>
   <style>
     body {
+      background: #fefeee;
       font-family: sans-serif;
+      font-size: 14px;
       margin: 0;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .history-container {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 10px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
+      margin: auto;
     }
     th, td {
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
+      border: 1px solid #ccc;
+      padding: 6px 8px;
       text-align: left;
     }
     th {
       background: #f0f0f0;
     }
-    #show-more-btn {
-      margin-top: 12px;
-      padding: 6px 12px;
-      border: none;
-      background: #4caf50;
-      color: white;
-      border-radius: 5px;
+    .center {
+      text-align: center;
+    }
+    #showMore {
+      margin-top: 10px;
+      padding: 5px 10px;
       cursor: pointer;
+      border: 1px solid #aaa;
+      background: #fff;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="history-container">
-    <h2>💰 Donation History</h2>
-    <table id="donation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Amount (USD)</th>
-          <th>Date</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <button id="show-more-btn">Show More</button>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount (USD)</th>
+        <th>Date</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody id="donationBody">
+      <tr><td colspan="4" class="center">Loading...</td></tr>
+    </tbody>
+  </table>
+  <div class="center"><button id="showMore" style="display:none;">Show More</button></div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const keyword = urlParams.get("keyword") || "";
-    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
-    const maxRows = 5;
-    let allRows = [], showing = 0;
+    const keyword = urlParams.get("keyword");
+
+    const donationsUrl = `https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations`;
+    const maxInitial = 5;
+    let allRows = [];
+    let shown = 0;
 
     async function loadHistory() {
       try {
-        const res = await fetch(`https://opensheet.elk.sh/${sheetId}/Donations`);
+        const res = await fetch(donationsUrl);
         const data = await res.json();
-
-        allRows = data.filter(row => row.Keyword === keyword);
+        allRows = data.filter(d => d.keyword === keyword);
+        shown = 0;
         renderRows();
       } catch (err) {
-        document.querySelector(".history-container").innerHTML = "⚠️ Error loading donation history.";
+        document.getElementById("donationBody").innerHTML =
+          `<tr><td colspan="4" class="center">Error loading history.</td></tr>`;
         console.error(err);
       }
     }
 
     function renderRows() {
-      const tableBody = document.querySelector("#donation-table tbody");
-      const nextBatch = allRows.slice(showing, showing + maxRows);
+      const tbody = document.getElementById("donationBody");
+      const nextRows = allRows.slice(shown, shown + maxInitial);
+      if (shown === 0) tbody.innerHTML = "";
 
-      nextBatch.forEach(row => {
+      for (const row of nextRows) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${row.Name || "Anonymous"}</td>
-          <td>$${parseFloat(row.Amount || 0).toLocaleString()}</td>
-          <td>${row.Date || "-"}</td>
-          <td>${row.Message || ""}</td>
+          <td>${row.name || "Anonymous"}</td>
+          <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
+          <td>${row.date || ""}</td>
+          <td>${row.message || ""}</td>
         `;
-        tableBody.appendChild(tr);
-      });
-
-      showing += nextBatch.length;
-      if (showing >= allRows.length) {
-        document.getElementById("show-more-btn").style.display = "none";
+        tbody.appendChild(tr);
       }
+
+      shown += nextRows.length;
+      document.getElementById("showMore").style.display =
+        shown < allRows.length ? "inline-block" : "none";
     }
 
-    document.getElementById("show-more-btn").addEventListener("click", renderRows);
+    document.getElementById("showMore").onclick = renderRows;
+    loadHistory();
+  </script>
+</body>
+</html>
