@@ -1,4 +1,4 @@
-<!-- 🌐 Donation History Table -->
+<!-- 💰 Donation History Table (history.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,16 +45,11 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    .error-text {
-      color: red;
-      text-align: center;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <div class="history-wrapper">
-    <div class="history-title" id="historyTitle">Donation History</div>
+    <div class="history-title" id="historyTitle">💰 Donation History</div>
     <table id="historyTable">
       <thead>
         <tr>
@@ -65,7 +60,6 @@
       </thead>
       <tbody id="historyBody"></tbody>
     </table>
-    <div class="error-text" id="errorText" style="display: none;"></div>
     <button class="show-more" id="showMoreBtn" style="display: none;"></button>
   </div>
 
@@ -91,28 +85,22 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // Set headers and labels
+        // Translate static text
         document.getElementById("historyTitle").textContent = i18n.historyTitle || "Donation History";
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
-        // Filter donations
+        // Filter and sort data
         allRows = donations
-          .filter(d => d.keyword?.trim() === keyword)
-          .sort((a, b) => new Date(b.date) - new Date(a.date));
+          .filter(d => d.keyword === keyword || d.Keyword === keyword)
+          .sort((a, b) => new Date(b.date || b.Date) - new Date(a.date || a.Date));
 
-        if (allRows.length === 0) {
-          document.getElementById("errorText").style.display = "block";
-          document.getElementById("errorText").textContent = i18n.noDonations || "No donations yet.";
-        } else {
-          renderRows();
-        }
+        renderRows();
       } catch (err) {
-        console.error("Failed to load history:", err);
-        document.getElementById("errorText").style.display = "block";
-        document.getElementById("errorText").textContent = "⚠️ Error loading donation history.";
+        console.error("Failed to load donation history:", err);
+        document.getElementById("historyBody").innerHTML = `<tr><td colspan="3">Failed to load donation history.</td></tr>`;
       }
     }
 
@@ -127,9 +115,9 @@
       visibleRows.forEach(row => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${row.name || "Anonymous"}</td>
-          <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
-          <td>${row.date || ""}</td>
+          <td>${row.name || row.Name || "Anonymous"}</td>
+          <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
+          <td>${row.date || row.Date || ""}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -140,9 +128,9 @@
           hiddenRows.forEach(row => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-              <td>${row.name || "Anonymous"}</td>
-              <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
-              <td>${row.date || ""}</td>
+              <td>${row.name || row.Name || "Anonymous"}</td>
+              <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
+              <td>${row.date || row.Date || ""}</td>
             `;
             tbody.appendChild(tr);
           });
@@ -153,7 +141,7 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", loadHistory);
+    loadHistory();
   </script>
 </body>
 </html>
