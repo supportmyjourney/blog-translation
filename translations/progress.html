@@ -1,87 +1,68 @@
-<!-- ✅ PROGRESS BAR ONLY (progress.html) -->
+<!-- ✅ progress.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Progress</title>
+  <meta charset="UTF-8">
+  <title>Donation Progress</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #fefcef;
       margin: 0;
-      padding: 20px;
+      font-family: sans-serif;
+      background: transparent;
     }
     .progress-container {
-      background-color: #f2f2f2;
-      border-radius: 30px;
-      position: relative;
-      height: 24px;
       width: 100%;
-      margin-bottom: 10px;
+      background-color: #f3f3f3;
+      border-radius: 8px;
+      overflow: hidden;
     }
     .progress-bar {
-      height: 100%;
-      border-radius: 30px;
-      background: linear-gradient(to right, #4caf50, #8bc34a);
+      height: 20px;
+      background-color: #4caf50;
       width: 0%;
-      transition: width 1s ease-in-out;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      line-height: 24px;
-      font-size: 13px;
+      transition: width 0.5s ease-in-out;
     }
-    .progress-label {
+    .progress-text {
+      text-align: center;
       margin-top: 5px;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div id="progress-section">
-    <div class="progress-container">
-      <div id="progress-bar" class="progress-bar">0%</div>
-    </div>
-    <div id="progress-label" class="progress-label">Loading...</div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
   </div>
+  <div class="progress-text" id="progress-text">Loading...</div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const keyword = params.get("keyword") || "logitech-g923";
-    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
-    const targetSheet = `https://opensheet.elk.sh/${sheetId}/Targets`;
-    const donationSheet = `https://opensheet.elk.sh/${sheetId}/Donations`;
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyword = urlParams.get("keyword") || "";
 
-    async function fetchProgressData() {
-      try {
-        const [targetRes, donationsRes] = await Promise.all([
-          fetch(targetSheet),
-          fetch(donationSheet)
-        ]);
-        const targets = await targetRes.json();
-        const donations = await donationsRes.json();
+    const targetsUrl = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Targets";
+    const donationsUrl = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations";
 
-        const target = targets.find(row => row.keyword === keyword);
-        const filteredDonations = donations.filter(row => row.keyword === keyword);
-        const raised = filteredDonations.reduce((sum, row) => sum + parseFloat(row.amount || 0), 0);
+    Promise.all([
+      fetch(targetsUrl).then(res => res.json()),
+      fetch(donationsUrl).then(res => res.json())
+    ])
+    .then(([targets, donations]) => {
+      const target = targets.find(t => t.keyword === keyword);
+      if (!target) throw new Error("Target not found");
 
-        if (!target) throw new Error("Target not found");
+      const goal = parseFloat(target.goal) || 0;
+      const raised = donations
+        .filter(d => d.keyword === keyword)
+        .reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
 
-        const goal = parseFloat(target.amount || 0);
-        const percent = Math.min(100, Math.round((raised / goal) * 100));
-
-        document.getElementById("progress-bar").style.width = percent + "%";
-        document.getElementById("progress-bar").textContent = percent + "%";
-        document.getElementById("progress-label").textContent =
-          `$${raised.toLocaleString()} raised of $${goal.toLocaleString()}`;
-      } catch (error) {
-        document.getElementById("progress-label").textContent = "Error loading progress.";
-        console.error("Progress Load Error:", error);
-      }
-    }
-
-    fetchProgressData();
+      const percent = Math.min(100, Math.round((raised / goal) * 100));
+      document.getElementById("progress-bar").style.width = percent + "%";
+      document.getElementById("progress-text").innerText = `$${raised.toLocaleString()} / $${goal.toLocaleString()} (${percent}%)`;
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("progress-text").innerText = "Error loading progress.";
+    });
   </script>
 </body>
 </html>

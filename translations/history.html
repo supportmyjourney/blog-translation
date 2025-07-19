@@ -1,134 +1,104 @@
-<!-- ✅ DONATION HISTORY ONLY (history.html) -->
+<!-- ✅ history.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Donation History</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #fefcef;
       margin: 0;
-      padding: 20px;
+      font-family: sans-serif;
+      background: transparent;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      font-size: 14px;
     }
     thead {
-      background: #f2f2f2;
+      background-color: #f2f2f2;
     }
     th, td {
-      padding: 8px;
-      font-size: 14px;
-      border-bottom: 1px solid #ddd;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
       text-align: left;
     }
-    .donation-row:nth-child(even) {
-      background-color: #fcfcfc;
-    }
-    .no-donation {
-      padding: 12px;
-      font-style: italic;
-      color: #777;
-    }
-    .show-more {
+    #show-more {
       margin-top: 10px;
       text-align: center;
     }
-    .show-more button {
-      padding: 6px 14px;
+    #show-more button {
+      padding: 6px 12px;
       font-size: 13px;
-      background: #eee;
       border: 1px solid #ccc;
       border-radius: 6px;
+      background-color: #f9f9f9;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <table>
+  <table id="donation-table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Amount (USD)</th>
-        <th>Message</th>
         <th>Date</th>
+        <th>Message</th>
       </tr>
     </thead>
-    <tbody id="donation-body">
-      <tr><td colspan="4" class="no-donation">Loading...</td></tr>
-    </tbody>
+    <tbody></tbody>
   </table>
-  <div class="show-more" id="show-more-container" style="display:none;">
-    <button onclick="showMoreRows()">Show More</button>
+  <div id="show-more">
+    <button onclick="showMore()">Show More</button>
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const keyword = params.get("keyword") || "logitech-g923";
-    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
-    const donationSheet = `https://opensheet.elk.sh/${sheetId}/Donations`;
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyword = urlParams.get("keyword") || "";
 
-    let allRows = [];
+    const donationsUrl = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations";
+    let donations = [];
     let visibleCount = 5;
 
-    function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      return isNaN(date.getTime()) ? "" : date.toLocaleDateString();
-    }
+    function renderTable() {
+      const tbody = document.querySelector("#donation-table tbody");
+      tbody.innerHTML = "";
 
-    function renderRows() {
-      const body = document.getElementById("donation-body");
-      body.innerHTML = "";
-
-      const rows = allRows.slice(0, visibleCount);
-      if (rows.length === 0) {
-        body.innerHTML = `<tr><td colspan="4" class="no-donation">No donations yet.</td></tr>`;
-        return;
-      }
-
-      rows.forEach(row => {
+      const shown = donations.slice(0, visibleCount);
+      shown.forEach(d => {
         const tr = document.createElement("tr");
-        tr.className = "donation-row";
         tr.innerHTML = `
-          <td>${row.name || "Anonymous"}</td>
-          <td>$${parseFloat(row.amount || 0).toLocaleString()}</td>
-          <td>${row.message || ""}</td>
-          <td>${formatDate(row.date || "")}</td>
+          <td>${d.name || "Anonymous"}</td>
+          <td>$${parseFloat(d.amount || 0).toLocaleString()}</td>
+          <td>${d.date || ""}</td>
+          <td>${d.message || ""}</td>
         `;
-        body.appendChild(tr);
+        tbody.appendChild(tr);
       });
 
-      if (visibleCount < allRows.length) {
-        document.getElementById("show-more-container").style.display = "block";
-      } else {
-        document.getElementById("show-more-container").style.display = "none";
-      }
+      document.getElementById("show-more").style.display =
+        visibleCount >= donations.length ? "none" : "block";
     }
 
-    function showMoreRows() {
+    function showMore() {
       visibleCount += 5;
-      renderRows();
+      renderTable();
     }
 
-    async function loadDonations() {
-      try {
-        const res = await fetch(donationSheet);
-        const data = await res.json();
-        allRows = data.filter(row => row.keyword === keyword);
-        allRows.reverse(); // Mới nhất lên đầu
-        renderRows();
-      } catch (error) {
-        document.getElementById("donation-body").innerHTML =
-          `<tr><td colspan="4" class="no-donation">Error loading donations.</td></tr>`;
-        console.error("Donation Load Error:", error);
-      }
-    }
-
-    loadDonations();
+    fetch(donationsUrl)
+      .then(res => res.json())
+      .then(data => {
+        donations = data
+          .filter(d => d.keyword === keyword)
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderTable();
+      })
+      .catch(err => {
+        console.error(err);
+        document.querySelector("#donation-table tbody").innerHTML =
+          "<tr><td colspan='4'>Error loading donation history.</td></tr>";
+      });
   </script>
 </body>
 </html>
