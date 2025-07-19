@@ -1,4 +1,4 @@
-<!-- 🌐 Donation Progress Bar -->
+<!-- 🌐 Donation Progress Bar (progress.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,20 +38,15 @@
       font-size: 14px;
       color: #555;
     }
-    .error-text {
-      color: red;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <div class="progress-wrapper">
-    <div class="progress-title" id="progressTitle">Amount Raised</div>
+    <div class="progress-title" id="progressTitle">📈 Amount Raised</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
     <div class="progress-text" id="progressText">$0 / $0</div>
-    <div class="error-text" id="errorText" style="display: none;"></div>
   </div>
 
   <script>
@@ -76,27 +71,27 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        const target = targets.find(t => t.keyword?.trim() === keyword);
-        if (!target) throw new Error(`Target not found for keyword: ${keyword}`);
+        // Find the target row matching the keyword
+        const target = targets.find(t => t.keyword === keyword || t.Keyword === keyword);
+        const goal = parseFloat(target?.goal || target?.Goal || 0);
 
-        const filteredDonations = donations.filter(d => d.keyword?.trim() === keyword);
-        const raised = filteredDonations.reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
-        const goal = parseFloat(target.goal || 0);
+        // Filter donations by keyword and sum the amount
+        const filteredDonations = donations.filter(d => d.keyword === keyword || d.Keyword === keyword);
+        const raised = filteredDonations.reduce((sum, d) => sum + parseFloat(d.amount || d.Amount || 0), 0);
 
         const percent = goal > 0 ? Math.min(100, (raised / goal) * 100) : 0;
 
-        // Update UI
+        // Update DOM
         document.getElementById("progressFill").style.width = percent + "%";
         document.getElementById("progressText").textContent = `$${raised.toFixed(2)} / $${goal.toFixed(2)}`;
         document.getElementById("progressTitle").textContent = i18n.raisedTitle || "Amount Raised";
       } catch (err) {
-        console.error("Failed to load progress:", err);
-        document.getElementById("errorText").style.display = "block";
-        document.getElementById("errorText").textContent = "⚠️ Error loading progress.";
+        console.error("Failed to load donation progress:", err);
+        document.getElementById("progressText").textContent = "Error loading progress.";
       }
     }
 
-    document.addEventListener("DOMContentLoaded", loadProgress);
+    loadProgress();
   </script>
 </body>
 </html>
