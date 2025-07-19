@@ -1,107 +1,60 @@
-<!-- 🌐 history.html - Embed Donation History Table -->
+<!-- 💰 Donation History Only -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Donation History</title>
   <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: transparent;
-    }
-    .donation-history {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    .donation-history th, .donation-history td {
-      padding: 6px 8px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-    .donation-history th {
-      background-color: #f4f4f4;
-    }
-    .load-more-btn {
-      display: block;
-      margin: 10px auto;
-      padding: 6px 12px;
-      font-size: 14px;
-      cursor: pointer;
-      border: 1px solid #aaa;
-      border-radius: 6px;
-      background-color: #fff;
-    }
+    body { font-family: sans-serif; font-size: 14px; background: #fcfaee; margin: 0; padding: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 6px 8px; border: 1px solid #ddd; }
+    th { background: #f1f1f1; text-align: left; }
+    .donation-row:hover { background: #f9f9f9; }
   </style>
 </head>
 <body>
-  <table class="donation-history" id="donationTable">
+  <table>
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>Amount (USD)</th>
-        <th>Message</th>
-        <th>Date</th>
-      </tr>
+      <tr><th>Name</th><th>Amount (USD)</th><th>Message</th><th>Date</th></tr>
     </thead>
-    <tbody id="donationBody">
-      <tr><td colspan="4">Loading...</td></tr>
-    </tbody>
+    <tbody id="donation-rows"><tr><td colspan="4">Loading...</td></tr></tbody>
   </table>
-  <button id="loadMoreBtn" class="load-more-btn" style="display:none;">Show More</button>
 
   <script>
-    const params = new URLSearchParams(location.search);
-    const campaign = params.get("campaign") || "";
-
-    const donationsURL = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations";
-
-    let allDonations = [];
-    let shownCount = 0;
-    const pageSize = 5;
-
-    function renderDonations() {
-      const tbody = document.getElementById("donationBody");
-      tbody.innerHTML = "";
-
-      const slice = allDonations.slice(0, shownCount);
-      for (const d of slice) {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${d.name || "Anonymous"}</td>
-          <td>$${parseFloat(d.amount || 0).toFixed(2)}</td>
-          <td>${d.message || ""}</td>
-          <td>${d.date || ""}</td>
-        `;
-        tbody.appendChild(row);
-      }
-
-      const btn = document.getElementById("loadMoreBtn");
-      btn.style.display = shownCount < allDonations.length ? "block" : "none";
-    }
+    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
+    const campaign = new URLSearchParams(location.search).get("campaign") || "";
+    const donationsURL = `https://opensheet.elk.sh/${sheetId}/Donations`;
 
     fetch(donationsURL)
       .then(res => res.json())
       .then(data => {
-        allDonations = data
-          .filter(d => d.keyword === campaign)
+        const list = data
+          .filter(d => d.campaign === campaign)
           .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        shownCount = Math.min(pageSize, allDonations.length);
-        renderDonations();
-      })
-      .catch(err => {
-        document.getElementById("donationBody").innerHTML = "<tr><td colspan='4'>Error loading donation history.</td></tr>";
-        console.error(err);
-      });
+        const tbody = document.getElementById("donation-rows");
+        tbody.innerHTML = "";
 
-    document.getElementById("loadMoreBtn").addEventListener("click", () => {
-      shownCount = Math.min(shownCount + pageSize, allDonations.length);
-      renderDonations();
-    });
+        if (list.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='4'>No donations yet.</td></tr>";
+        } else {
+          for (const d of list.slice(0, 5)) {
+            const row = document.createElement("tr");
+            row.className = "donation-row";
+            row.innerHTML = `
+              <td>${d.name || "Anonymous"}</td>
+              <td>$${parseFloat(d.amount || 0).toFixed(2)}</td>
+              <td>${d.message || ""}</td>
+              <td>${d.date || ""}</td>
+            `;
+            tbody.appendChild(row);
+          }
+        }
+      })
+      .catch(() => {
+        document.getElementById("donation-rows").innerHTML = 
+          "<tr><td colspan='4'>Error loading donation history.</td></tr>";
+      });
   </script>
 </body>
 </html>
