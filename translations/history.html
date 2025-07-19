@@ -1,0 +1,76 @@
+<!-- 🌐 history.html - Embed Donation History -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donation History</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: transparent;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    .donation-wrapper {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="donation-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Donor</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="donationTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const campaign = params.get("campaign") || "";
+
+    fetch("https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/data")
+      .then((res) => res.json())
+      .then((rows) => {
+        const data = rows
+          .filter(r => r.keyword === campaign)
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const tbody = document.getElementById("donationTable");
+        data.forEach(row => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${row.name || "Anonymous"}</td>
+            <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
+            <td>${row.date || ""}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => {
+        const tbody = document.getElementById("donationTable");
+        tbody.innerHTML = `<tr><td colspan="3">Error loading donation history.</td></tr>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
