@@ -52,26 +52,30 @@
     const params = new URLSearchParams(location.search);
     const campaign = params.get("campaign") || "";
 
-    fetch("https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/data")
-      .then((res) => res.json())
-      .then((rows) => {
-        const data = rows.filter(r => r.keyword === campaign);
-        let total = 0, goal = 0;
+    // Sheet: Donations
+    const donationsUrl = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations";
+    // Sheet: Targets
+    const targetsUrl = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Targets";
 
-        data.forEach(row => {
-          total += parseFloat(row.amount || 0);
-          goal = parseFloat(row.goal || 0);
-        });
+    Promise.all([
+      fetch(donationsUrl).then(r => r.json()),
+      fetch(targetsUrl).then(r => r.json())
+    ])
+    .then(([donations, targets]) => {
+      const campaignDonations = donations.filter(r => r.keyword === campaign);
+      const campaignTarget = targets.find(r => r.keyword === campaign);
+      const goal = campaignTarget ? parseFloat(campaignTarget.goal || 0) : 0;
+      const total = campaignDonations.reduce((sum, r) => sum + parseFloat(r.amount || 0), 0);
+      const percent = goal > 0 ? Math.min(100, Math.round((total / goal) * 100)) : 0;
 
-        const percent = goal > 0 ? Math.min(100, Math.round((total / goal) * 100)) : 0;
-        document.getElementById("progressFill").style.width = percent + "%";
-        document.getElementById("progressFill").innerText = percent + "%";
-        document.getElementById("progressText").innerText = `$${total.toFixed(2)} raised of $${goal.toFixed(2)}`;
-      })
-      .catch(err => {
-        document.getElementById("progressText").innerText = "Error loading progress.";
-        console.error(err);
-      });
+      document.getElementById("progressFill").style.width = percent + "%";
+      document.getElementById("progressFill").innerText = percent + "%";
+      document.getElementById("progressText").innerText = `$${total.toFixed(2)} raised of $${goal.toFixed(2)}`;
+    })
+    .catch(err => {
+      document.getElementById("progressText").innerText = "Error loading progress.";
+      console.error(err);
+    });
   </script>
 </body>
 </html>
