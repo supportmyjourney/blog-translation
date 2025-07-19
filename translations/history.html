@@ -1,4 +1,4 @@
-<!-- 🌐 history.html - Embed Donation History -->
+<!-- 🌐 history.html - Embed Donation History Table -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,66 +11,97 @@
       font-family: sans-serif;
       background: transparent;
     }
-    table {
+    .donation-history {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
+      margin-top: 10px;
     }
-    th, td {
+    .donation-history th, .donation-history td {
       padding: 6px 8px;
       border-bottom: 1px solid #ddd;
       text-align: left;
     }
-    th {
-      background-color: #f5f5f5;
-      font-weight: bold;
+    .donation-history th {
+      background-color: #f4f4f4;
     }
-    .donation-wrapper {
-      padding: 10px;
+    .load-more-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      background-color: #fff;
     }
   </style>
 </head>
 <body>
-  <div class="donation-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Donor</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody id="donationTable"></tbody>
-    </table>
-  </div>
+  <table class="donation-history" id="donationTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount (USD)</th>
+        <th>Message</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="donationBody">
+      <tr><td colspan="4">Loading...</td></tr>
+    </tbody>
+  </table>
+  <button id="loadMoreBtn" class="load-more-btn" style="display:none;">Show More</button>
 
   <script>
     const params = new URLSearchParams(location.search);
     const campaign = params.get("campaign") || "";
 
-    fetch("https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations")
-      .then((res) => res.json())
-      .then((rows) => {
-        const data = rows
-          .filter(r => r.keyword === campaign)
+    const donationsURL = "https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations";
+
+    let allDonations = [];
+    let shownCount = 0;
+    const pageSize = 5;
+
+    function renderDonations() {
+      const tbody = document.getElementById("donationBody");
+      tbody.innerHTML = "";
+
+      const slice = allDonations.slice(0, shownCount);
+      for (const d of slice) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${d.name || "Anonymous"}</td>
+          <td>$${parseFloat(d.amount || 0).toFixed(2)}</td>
+          <td>${d.message || ""}</td>
+          <td>${d.date || ""}</td>
+        `;
+        tbody.appendChild(row);
+      }
+
+      const btn = document.getElementById("loadMoreBtn");
+      btn.style.display = shownCount < allDonations.length ? "block" : "none";
+    }
+
+    fetch(donationsURL)
+      .then(res => res.json())
+      .then(data => {
+        allDonations = data
+          .filter(d => d.keyword === campaign)
           .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        const tbody = document.getElementById("donationTable");
-        data.forEach(row => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row.name || "Anonymous"}</td>
-            <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
-            <td>${row.date || ""}</td>
-          `;
-          tbody.appendChild(tr);
-        });
+        shownCount = Math.min(pageSize, allDonations.length);
+        renderDonations();
       })
       .catch(err => {
-        const tbody = document.getElementById("donationTable");
-        tbody.innerHTML = `<tr><td colspan="3">Error loading donation history.</td></tr>`;
+        document.getElementById("donationBody").innerHTML = "<tr><td colspan='4'>Error loading donation history.</td></tr>";
         console.error(err);
       });
+
+    document.getElementById("loadMoreBtn").addEventListener("click", () => {
+      shownCount = Math.min(shownCount + pageSize, allDonations.length);
+      renderDonations();
+    });
   </script>
 </body>
 </html>
