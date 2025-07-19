@@ -1,50 +1,72 @@
-<!-- 📈 Donation Progress Only -->
+<!-- progress.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation Progress</title>
   <style>
-    body { font-family: sans-serif; font-size: 14px; background: #fcfaee; margin: 0; padding: 10px; }
-    .progress-wrapper { margin-bottom: 10px; }
-    .progress-text { margin-bottom: 4px; }
-    .progress-bar { background: #eee; border-radius: 10px; overflow: hidden; height: 20px; }
-    .progress-fill { height: 100%; background: #4caf50; color: white; text-align: center; line-height: 20px; font-size: 12px; }
+    body {
+      font-family: sans-serif;
+      background: #fdfcef;
+      padding: 16px;
+      font-size: 14px;
+    }
+    .bar-container {
+      background: #eee;
+      border-radius: 12px;
+      height: 24px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      color: white;
+      font-weight: bold;
+      line-height: 24px;
+      text-align: center;
+      transition: width 0.5s;
+    }
   </style>
 </head>
 <body>
-  <div class="progress-wrapper">
-    <div class="progress-text" id="progress-text">Loading...</div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%">0%</div></div>
+  <div id="status">Loading...</div>
+  <div class="bar-container">
+    <div class="bar-fill" id="progress">0%</div>
   </div>
 
   <script>
     const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
-    const campaign = new URLSearchParams(location.search).get("campaign") || "";
-    const donationsURL = `https://opensheet.elk.sh/${sheetId}/Donations`;
-    const targetsURL = `https://opensheet.elk.sh/${sheetId}/Targets`;
+    const keyword = new URLSearchParams(window.location.search).get("keyword");
 
-    Promise.all([fetch(donationsURL), fetch(targetsURL)])
-      .then(responses => Promise.all(responses.map(r => r.json())))
-      .then(([donations, targets]) => {
-        const total = donations
-          .filter(d => d.campaign === campaign)
-          .reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
-        
-        const targetEntry = targets.find(t => t.keyword === campaign);
-        const goal = parseFloat(targetEntry?.goal || 0);
+    const fetchSheet = (sheet) =>
+      fetch(`https://opensheet.elk.sh/${sheetId}/${sheet}`).then(r => r.json());
 
-        const percent = goal ? Math.min(100, (total / goal) * 100) : 0;
+    Promise.all([
+      fetchSheet("Targets"),
+      fetchSheet("Donations")
+    ])
+    .then(([targets, donations]) => {
+      const target = targets.find(t => t.Keyword === keyword);
+      if (!target) throw new Error("Target not found");
 
-        document.getElementById("progress-text").textContent =
-          `Raised $${total.toFixed(2)} of $${goal.toFixed(2)}`;
-        const fill = document.getElementById("progress-fill");
-        fill.style.width = `${percent.toFixed(1)}%`;
-        fill.textContent = `${percent.toFixed(1)}%`;
-      })
-      .catch(() => {
-        document.getElementById("progress-text").textContent = "Error loading progress.";
-      });
+      const goal = parseFloat(target.Goal || 0);
+      const total = donations
+        .filter(d => d.Keyword === keyword && d.Currency === "USD")
+        .reduce((sum, d) => sum + parseFloat(d.Amount || 0), 0);
+
+      const percent = Math.min(100, Math.round((total / goal) * 100));
+      document.getElementById("status").innerText = `Raised $${total.toFixed(2)} of $${goal}`;
+      const progress = document.getElementById("progress");
+      progress.style.width = percent + "%";
+      progress.innerText = percent + "%";
+    })
+    .catch(err => {
+      document.getElementById("status").innerText = "Error loading progress.";
+      console.error(err);
+    });
   </script>
 </body>
 </html>
