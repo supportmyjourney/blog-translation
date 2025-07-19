@@ -48,7 +48,7 @@
     const params = new URLSearchParams(location.search);
     const campaign = params.get("campaign") || "";
 
-    fetch("https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/data")
+    fetch("https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations")
       .then((res) => res.json())
       .then((rows) => {
         const data = rows
