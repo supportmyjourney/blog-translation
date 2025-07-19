@@ -1,0 +1,190 @@
+<!-- 📦 Combined Donation Progress + History (embed2.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donation Tracker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #fff;
+      max-width: 800px;
+      margin: auto;
+    }
+    .progress-title, .history-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .progress-bar {
+      height: 24px;
+      background-color: #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: #28a745;
+      width: 0;
+      transition: width 0.5s ease-in-out;
+      text-align: center;
+      color: white;
+      line-height: 24px;
+      font-weight: bold;
+    }
+    .progress-text {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .show-more {
+      display: block;
+      margin: 15px auto 0;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- 📈 Amount Raised -->
+  <div>
+    <div class="progress-title" id="progressTitle">Amount Raised</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill">0%</div>
+    </div>
+    <div class="progress-text" id="progressText">$0 / $0</div>
+  </div>
+
+  <!-- 💰 Donation History -->
+  <div>
+    <div class="history-title" id="historyTitle">Donation History</div>
+    <table>
+      <thead>
+        <tr>
+          <th id="nameHeader">Name</th>
+          <th id="amountHeader">Amount</th>
+          <th id="dateHeader">Date</th>
+        </tr>
+      </thead>
+      <tbody id="historyBody"></tbody>
+    </table>
+    <button class="show-more" id="showMoreBtn" style="display: none;"></button>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyword = urlParams.get("keyword") || "logitech-g923";
+    const lang = urlParams.get("lang") || "en-us";
+
+    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
+    const targetsUrl = `https://opensheet.elk.sh/${sheetId}/Targets`;
+    const donationsUrl = `https://opensheet.elk.sh/${sheetId}/Donations`;
+    const i18nUrl = `https://blog-translation.pages.dev/posts/logitech-g923/${lang}.json`;
+
+    const maxInitialRows = 5;
+    let allRows = [];
+
+    async function loadData() {
+      try {
+        const [targetsRes, donationsRes, i18nRes] = await Promise.all([
+          fetch(targetsUrl),
+          fetch(donationsUrl),
+          fetch(i18nUrl),
+        ]);
+
+        const targets = await targetsRes.json();
+        const donations = await donationsRes.json();
+        const i18n = await i18nRes.json();
+
+        const target = targets.find(t => t.keyword === keyword || t.Keyword === keyword);
+        const filteredDonations = donations.filter(d => d.keyword === keyword || d.Keyword === keyword);
+
+        const raised = filteredDonations.reduce((sum, d) => sum + parseFloat(d.amount || d.Amount || 0), 0);
+        const goal = parseFloat(target?.goal || target?.Goal || 0);
+        const percent = goal > 0 ? Math.min(100, (raised / goal) * 100) : 0;
+
+        // Update progress bar
+        document.getElementById("progressTitle").textContent = i18n.raisedTitle || "Amount Raised";
+        document.getElementById("progressFill").style.width = percent + "%";
+        document.getElementById("progressFill").textContent = Math.round(percent) + "%";
+        document.getElementById("progressText").textContent = `$${raised.toFixed(2)} / $${goal.toFixed(2)}`;
+
+        // Update history table headers
+        document.getElementById("historyTitle").textContent = i18n.historyTitle || "Donation History";
+        document.getElementById("nameHeader").textContent = i18n.name || "Name";
+        document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
+        document.getElementById("dateHeader").textContent = i18n.date || "Date";
+        document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
+
+        allRows = filteredDonations
+          .sort((a, b) => new Date(b.date || b.Date) - new Date(a.date || a.Date));
+
+        renderRows();
+      } catch (err) {
+        console.error("Error loading embed data:", err);
+      }
+    }
+
+    function renderRows() {
+      const tbody = document.getElementById("historyBody");
+      tbody.innerHTML = "";
+
+      const visible = allRows.slice(0, maxInitialRows);
+      const hidden = allRows.slice(maxInitialRows);
+
+      visible.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.name || row.Name || "Anonymous"}</td>
+          <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
+          <td>${row.date || row.Date || ""}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const showMoreBtn = document.getElementById("showMoreBtn");
+      if (hidden.length > 0) {
+        showMoreBtn.style.display = "block";
+        showMoreBtn.onclick = () => {
+          hidden.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${row.name || row.Name || "Anonymous"}</td>
+              <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
+              <td>${row.date || row.Date || ""}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+          showMoreBtn.style.display = "none";
+        };
+      } else {
+        showMoreBtn.style.display = "none";
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
