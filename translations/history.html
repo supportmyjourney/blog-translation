@@ -1,103 +1,143 @@
+<!-- 🌐 Donation History Table -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation History</title>
   <style>
     body {
-      background: #fefeee;
       font-family: sans-serif;
-      font-size: 14px;
       margin: 0;
-      padding: 10px;
+      padding: 20px;
+      background: #fff;
+    }
+    .history-wrapper {
+      max-width: 600px;
+      margin: auto;
+    }
+    .history-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: auto;
+      font-size: 14px;
     }
     th, td {
-      border: 1px solid #ccc;
-      padding: 6px 8px;
+      padding: 8px;
+      border: 1px solid #ddd;
       text-align: left;
     }
     th {
-      background: #f0f0f0;
+      background-color: #f2f2f2;
     }
-    .center {
-      text-align: center;
-    }
-    #showMore {
-      margin-top: 10px;
-      padding: 5px 10px;
-      cursor: pointer;
-      border: 1px solid #aaa;
-      background: #fff;
+    .show-more {
+      display: block;
+      margin: 15px auto 0;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
       border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Amount (USD)</th>
-        <th>Date</th>
-        <th>Message</th>
-      </tr>
-    </thead>
-    <tbody id="donationBody">
-      <tr><td colspan="4" class="center">Loading...</td></tr>
-    </tbody>
-  </table>
-  <div class="center"><button id="showMore" style="display:none;">Show More</button></div>
+  <div class="history-wrapper">
+    <div class="history-title" id="historyTitle">Donation History</div>
+    <table id="historyTable">
+      <thead>
+        <tr>
+          <th id="nameHeader">Name</th>
+          <th id="amountHeader">Amount</th>
+          <th id="dateHeader">Date</th>
+        </tr>
+      </thead>
+      <tbody id="historyBody"></tbody>
+    </table>
+    <button class="show-more" id="showMoreBtn" style="display: none;"></button>
+  </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const keyword = urlParams.get("keyword");
+    const keyword = urlParams.get("keyword") || "logitech-g923";
+    const lang = urlParams.get("lang") || "en-us";
 
-    const donationsUrl = `https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations`;
-    const maxInitial = 5;
+    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
+    const donationsUrl = `https://opensheet.elk.sh/${sheetId}/Donations`;
+    const i18nUrl = `https://blog-translation.pages.dev/posts/logitech-g923/${lang}.json`;
+
+    const maxInitialRows = 5;
     let allRows = [];
-    let shown = 0;
 
     async function loadHistory() {
       try {
-        const res = await fetch(donationsUrl);
-        const data = await res.json();
-        allRows = data.filter(d => d.keyword === keyword);
-        shown = 0;
+        const [donationsRes, langRes] = await Promise.all([
+          fetch(donationsUrl),
+          fetch(i18nUrl)
+        ]);
+
+        const donations = await donationsRes.json();
+        const i18n = await langRes.json();
+
+        document.getElementById("historyTitle").textContent = i18n.historyTitle || "Donation History";
+        document.getElementById("nameHeader").textContent = i18n.name || "Name";
+        document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
+        document.getElementById("dateHeader").textContent = i18n.date || "Date";
+        document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
+
+        allRows = donations
+          .filter(d => d.keyword === keyword)
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
+
         renderRows();
       } catch (err) {
-        document.getElementById("donationBody").innerHTML =
-          `<tr><td colspan="4" class="center">Error loading history.</td></tr>`;
-        console.error(err);
+        console.error("Failed to load history:", err);
       }
     }
 
     function renderRows() {
-      const tbody = document.getElementById("donationBody");
-      const nextRows = allRows.slice(shown, shown + maxInitial);
-      if (shown === 0) tbody.innerHTML = "";
+      const tbody = document.getElementById("historyBody");
+      tbody.innerHTML = "";
 
-      for (const row of nextRows) {
+      const showMoreBtn = document.getElementById("showMoreBtn");
+      const visibleRows = allRows.slice(0, maxInitialRows);
+      const hiddenRows = allRows.slice(maxInitialRows);
+
+      visibleRows.forEach(row => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${row.name || "Anonymous"}</td>
           <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
           <td>${row.date || ""}</td>
-          <td>${row.message || ""}</td>
         `;
         tbody.appendChild(tr);
-      }
+      });
 
-      shown += nextRows.length;
-      document.getElementById("showMore").style.display =
-        shown < allRows.length ? "inline-block" : "none";
+      if (hiddenRows.length > 0) {
+        showMoreBtn.style.display = "block";
+        showMoreBtn.onclick = () => {
+          hiddenRows.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${row.name || "Anonymous"}</td>
+              <td>$${parseFloat(row.amount || 0).toFixed(2)}</td>
+              <td>${row.date || ""}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+          showMoreBtn.style.display = "none";
+        };
+      } else {
+        showMoreBtn.style.display = "none";
+      }
     }
 
-    document.getElementById("showMore").onclick = renderRows;
     loadHistory();
   </script>
 </body>

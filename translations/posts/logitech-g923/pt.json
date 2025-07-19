@@ -1,15 +1,15 @@
 {
-  "title": "🎯 Campanha de Doação: Logitech G923 Volante + Câmbio",
+  "title": "🎯 Campanha de Arrecadação: Volante Logitech G923 Driving Force + Câmbio",
   "date": "🗓️ 8 de julho de 2025",
   "goalTitle": "📌 Meta:",
   "item": "Item:",
-  "itemVal": "Volante Logitech G923 + Câmbio",
-  "target": "Valor Alvo:",
+  "itemVal": "Volante Logitech G923 Driving Force + Câmbio",
+  "target": "Valor da Meta:",
   "targetVal": "$400",
   "status": "Status:",
   "statusVal": "Em andamento 🔄",
   "donateTitle": "💖 Doar via PayPal:",
-  "donateDesc": "Digite o valor desejado e clique abaixo para me apoiar.",
+  "donateDesc": "Digite o valor desejado e clique abaixo para me apoiar via PayPal.",
   "donatePlaceholder": "Digite o valor (USD)",
   "donateBtn": "Doar com PayPal",
   "donateValidation": "Por favor, insira um valor de pelo menos $1.",
@@ -19,8 +19,10 @@
   "historyTitle": "💰 Histórico de Doações:",
   "noDonations": "Ainda não há doações. Seja o primeiro a contribuir!",
   "proofTitle": "📷 Comprovante de Compra:",
-  "proofText": "Após atingir a meta e adquirir o produto, publicarei fotos ou vídeos reais como prova.",
+  "proofText": "Após atingir a meta e comprar o produto, publicarei fotos ou vídeos reais como comprovação.",
   "policyTitle": "📜 Política de Transparência",
-  "policyText": "Esta é uma campanha pessoal. Todos os fundos serão usados para o produto indicado. Recibos serão divulgados. Qualquer sobra será relatada.",
-  "thanks": "Obrigado por apoiar minha jornada! 💘<br /> Toda ajuda é muito bem-vinda."
+  "policyText": "Esta é uma campanha de doação pessoal. Todos os fundos serão usados no produto indicado. Os recibos serão publicados. Qualquer excedente será relatado.",
+  "thanks": "Obrigado por apoiar minha jornada! 💘<br /> Toda ajuda é muito valiosa.",
+  "showMore": "Mostrar mais",
+  "showLess": "Mostrar menos"
 }

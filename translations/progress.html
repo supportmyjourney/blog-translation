@@ -1,74 +1,88 @@
+<!-- 🌐 Donation Progress Bar -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation Progress</title>
   <style>
     body {
-      background: #fefeee;
       font-family: sans-serif;
-      font-size: 14px;
-      text-align: center;
       margin: 0;
-      padding: 10px;
+      padding: 20px;
+      background: #fff;
+    }
+    .progress-wrapper {
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+    }
+    .progress-title {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
     .progress-bar {
-      width: 90%;
-      height: 20px;
-      background: #eee;
-      border-radius: 10px;
-      margin: 10px auto;
+      height: 24px;
+      background-color: #eee;
+      border-radius: 20px;
       overflow: hidden;
     }
     .progress-fill {
       height: 100%;
-      background: #4caf50;
-      width: 0%;
-      transition: width 0.5s;
+      background-color: #28a745;
+      width: 0;
+      transition: width 0.5s ease-in-out;
     }
-    .progress-label {
-      margin-top: 5px;
+    .progress-text {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="progress-bar">
-    <div class="progress-fill" id="progressFill"></div>
+  <div class="progress-wrapper">
+    <div class="progress-title" id="progressTitle">Amount Raised</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">$0 / $0</div>
   </div>
-  <div class="progress-label" id="progressLabel">Loading...</div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const keyword = urlParams.get("keyword");
+    const keyword = urlParams.get("keyword") || "logitech-g923";
+    const lang = urlParams.get("lang") || "en-us";
 
-    const targetsUrl = `https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Targets`;
-    const donationsUrl = `https://opensheet.elk.sh/1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60/Donations`;
+    const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
+    const targetsUrl = `https://opensheet.elk.sh/${sheetId}/Targets`;
+    const donationsUrl = `https://opensheet.elk.sh/${sheetId}/Donations`;
+    const i18nUrl = `https://blog-translation.pages.dev/posts/logitech-g923/${lang}.json`;
 
     async function loadProgress() {
       try {
-        const [targetsRes, donationsRes] = await Promise.all([
+        const [targetsRes, donationsRes, langRes] = await Promise.all([
           fetch(targetsUrl),
           fetch(donationsUrl),
+          fetch(i18nUrl)
         ]);
 
         const targets = await targetsRes.json();
         const donations = await donationsRes.json();
+        const i18n = await langRes.json();
 
-        const targetItem = targets.find(t => t.keyword === keyword);
-        if (!targetItem) throw new Error("Target not found");
+        const target = targets.find(t => t.keyword === keyword);
+        const filteredDonations = donations.filter(d => d.keyword === keyword);
 
-        const goal = parseFloat(targetItem.goal || 0);
-        const raised = donations
-          .filter(d => d.keyword === keyword)
-          .reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
+        const raised = filteredDonations.reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
+        const goal = parseFloat(target?.goal || 0);
 
-        const percent = Math.min(100, (raised / goal) * 100).toFixed(1);
+        const percent = goal > 0 ? Math.min(100, (raised / goal) * 100) : 0;
         document.getElementById("progressFill").style.width = percent + "%";
-        document.getElementById("progressLabel").innerText =
-          `$${raised.toFixed(2)} raised of $${goal.toFixed(2)} (${percent}%)`;
+        document.getElementById("progressText").textContent = `$${raised.toFixed(2)} / $${goal.toFixed(2)}`;
+        document.getElementById("progressTitle").textContent = i18n.raisedTitle || "Amount Raised";
       } catch (err) {
-        document.getElementById("progressLabel").innerText = "Error loading progress.";
-        console.error(err);
+        console.error("Failed to load progress:", err);
       }
     }
 

@@ -5,14 +5,14 @@
   "item": "Item:",
   "itemVal": "Logitech G923 Driving Force Racing Wheel + Shifter",
   "target": "Target Amount:",
-  "targetVal": "$400",
+  "targetVal": "£400",
   "status": "Status:",
   "statusVal": "In progress 🔄",
   "donateTitle": "💖 Donate via PayPal:",
   "donateDesc": "Enter your desired amount and click below to support me via PayPal.",
-  "donatePlaceholder": "Enter amount (USD)",
+  "donatePlaceholder": "Enter amount (GBP)",
   "donateBtn": "Donate with PayPal",
-  "donateValidation": "Please enter an amount of at least $1.",
+  "donateValidation": "Please enter an amount of at least £1.",
   "processing": "Processing...",
   "raisedTitle": "📈 Amount Raised:",
   "received": "Received:",
@@ -22,5 +22,7 @@
   "proofText": "After reaching the goal and purchasing the product, I will upload real photos or videos of the unboxing as proof.",
   "policyTitle": "📜 Transparency Policy",
   "policyText": "This is a personal donation campaign. All funds will go toward the stated product. Receipts will be posted. Any surplus will be reported.",
-  "thanks": "Thank you for supporting my journey! 💘<br /> Every bit of help means a lot."
+  "thanks": "Thank you for supporting my journey! 💘<br /> Every bit of help means a lot.",
+  "donateMore": "Show More",
+  "showLess": "Show Less"
 }
