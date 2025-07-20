@@ -1,33 +1,29 @@
 <!-- 💰 Donation History Table (history.html) -->
 <!DOCTYPE html>
-<html lang="en" style="background: transparent;">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation History</title>
   <style>
-    /* 🧩 Reset box sizing for consistency */
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: sans-serif;
       margin: 0;
       padding: 20px;
-      background: transparent; /* ✅ Transparent to match parent site background */
+      background: transparent; /* Transparent background to match embedding page */
     }
 
     .history-wrapper {
       max-width: 100%;
       margin: auto;
+      overflow-x: auto;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
-      table-layout: fixed; /* ✅ Ensures column width control */
+      table-layout: auto; /* Enable auto column sizing */
     }
 
     th, td {
@@ -39,34 +35,27 @@
 
     th {
       background-color: #f2f2f2;
-      white-space: nowrap; /* ✅ Prevent header wrap */
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    td {
-      word-wrap: break-word;
-    }
-
-    /* 🧱 Column width control */
+    /* Column-specific styles */
     .name-col {
-      width: 30%;
-      max-width: 200px;
+      width: 20%;
     }
 
     .amount-col {
-      width: 20%;
-      max-width: 120px;
-    }
-
-    .note-col {
-      width: 30%;
-      max-width: 200px;
+      width: 15%;
     }
 
     .date-col {
       width: 20%;
-      max-width: 150px;
+      white-space: nowrap;
+    }
+
+    .note-col {
+      max-width: 180px;
+      width: auto;
+      word-break: break-word;
     }
 
     .show-more {
@@ -89,8 +78,8 @@
         <tr>
           <th id="nameHeader" class="name-col">Name</th>
           <th id="amountHeader" class="amount-col">Amount</th>
-          <th id="noteHeader" class="note-col">Note</th>
           <th id="dateHeader" class="date-col">Date</th>
+          <th id="noteHeader" class="note-col">Note</th>
         </tr>
       </thead>
       <tbody id="historyBody"></tbody>
@@ -110,6 +99,7 @@
     const maxInitialRows = 5;
     let allRows = [];
 
+    // Load donation data and language
     async function loadHistory() {
       try {
         const [donationsRes, langRes] = await Promise.all([
@@ -120,17 +110,17 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // 🌐 Translate column headers
+        // Set translated headers if available
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("noteHeader").textContent = i18n.note || "Note";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
-        // 🔍 Filter by keyword and sort from oldest to newest
+        // Filter and sort by date (oldest first)
         allRows = donations
-          .filter(d => (d.keyword || d.Keyword) === keyword)
-          .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date)); // ⬆️ Oldest first
+          .filter(d => d.keyword === keyword || d.Keyword === keyword)
+          .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date));
 
         renderRows();
       } catch (err) {
@@ -139,6 +129,7 @@
       }
     }
 
+    // Render visible rows and handle "show more"
     function renderRows() {
       const tbody = document.getElementById("historyBody");
       tbody.innerHTML = "";
@@ -160,13 +151,14 @@
       }
     }
 
+    // Append single row to the table body
     function appendRow(tbody, row) {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td class="name-col">${row.name || row.Name || "Anonymous"}</td>
         <td class="amount-col">$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
-        <td class="note-col">${row.note || row.Note || ""}</td>
         <td class="date-col">${row.date || row.Date || ""}</td>
+        <td class="note-col">${row.note || row.Note || ""}</td>
       `;
       tbody.appendChild(tr);
     }
