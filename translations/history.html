@@ -1,53 +1,72 @@
 <!-- 💰 Donation History Table (history.html) -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: transparent;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation History</title>
   <style>
+    /* 🧩 Reset box sizing for consistency */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: sans-serif;
       margin: 0;
       padding: 20px;
-      background: #fff;
+      background: transparent; /* ✅ Transparent to match parent site background */
     }
 
     .history-wrapper {
-      max-width: 600px;
+      max-width: 100%;
       margin: auto;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: fixed; /* 📐 Ensure predictable column layout */
       font-size: 14px;
+      table-layout: fixed; /* ✅ Ensures column width control */
     }
 
     th, td {
       padding: 8px;
       border: 1px solid #ddd;
       text-align: left;
-      word-wrap: break-word; /* ✂️ Allow content to wrap in narrow cells */
+      vertical-align: top;
     }
 
-    /* 💵 Fixed width for Amount column */
-    th:nth-child(2), td.amount-col {
-      width: 90px;
-      text-align: right;
+    th {
+      background-color: #f2f2f2;
+      white-space: nowrap; /* ✅ Prevent header wrap */
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* 🕒 Fixed width and center text for Date column */
-    th:nth-child(4), td.date-col {
-      width: 90px;
-      text-align: center;
-      white-space: nowrap;
+    td {
+      word-wrap: break-word;
     }
 
-    /* 📦 Name and Note columns auto-expand */
-    td.name-col, td.note-col {
-      width: auto;
+    /* 🧱 Column width control */
+    .name-col {
+      width: 30%;
+      max-width: 200px;
+    }
+
+    .amount-col {
+      width: 20%;
+      max-width: 120px;
+    }
+
+    .note-col {
+      width: 30%;
+      max-width: 200px;
+    }
+
+    .date-col {
+      width: 20%;
+      max-width: 150px;
     }
 
     .show-more {
@@ -68,10 +87,10 @@
     <table id="historyTable">
       <thead>
         <tr>
-          <th id="nameHeader">Name</th>
-          <th id="amountHeader">Amount</th>
-          <th id="noteHeader">Note</th>
-          <th id="dateHeader">Date</th>
+          <th id="nameHeader" class="name-col">Name</th>
+          <th id="amountHeader" class="amount-col">Amount</th>
+          <th id="noteHeader" class="note-col">Note</th>
+          <th id="dateHeader" class="date-col">Date</th>
         </tr>
       </thead>
       <tbody id="historyBody"></tbody>
@@ -101,23 +120,22 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // 🌐 Translate table headers
+        // 🌐 Translate column headers
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
-        document.getElementById("noteHeader").textContent = i18n.note || "Note";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
+        document.getElementById("noteHeader").textContent = i18n.note || "Note";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
-        // 🔍 Filter by keyword and sort by oldest first
+        // 🔍 Filter by keyword and sort from oldest to newest
         allRows = donations
-          .filter(d => d.keyword === keyword || d.Keyword === keyword)
-          .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date));
+          .filter(d => (d.keyword || d.Keyword) === keyword)
+          .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date)); // ⬆️ Oldest first
 
         renderRows();
       } catch (err) {
-        console.error("❌ Failed to load donation history:", err);
-        document.getElementById("historyBody").innerHTML =
-          `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
+        console.error("Failed to load donation history:", err);
+        document.getElementById("historyBody").innerHTML = `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
       }
     }
 
@@ -129,47 +147,28 @@
       const visibleRows = allRows.slice(0, maxInitialRows);
       const hiddenRows = allRows.slice(maxInitialRows);
 
-      // 📋 Render visible rows
-      visibleRows.forEach(row => {
-        const tr = document.createElement("tr");
-        const name = row.name || row.Name || "Anonymous";
-        const amount = parseFloat(row.amount || row.Amount || 0).toFixed(2);
-        const note = row.note || row.Note || "";
-        const date = row.date || row.Date || "";
+      visibleRows.forEach(row => appendRow(tbody, row));
 
-        tr.innerHTML = `
-          <td class="name-col">${name}</td>
-          <td class="amount-col">$${amount}</td>
-          <td class="note-col">${note}</td>
-          <td class="date-col">${date}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      // 🔘 Handle Show More
       if (hiddenRows.length > 0) {
         showMoreBtn.style.display = "block";
         showMoreBtn.onclick = () => {
-          hiddenRows.forEach(row => {
-            const tr = document.createElement("tr");
-            const name = row.name || row.Name || "Anonymous";
-            const amount = parseFloat(row.amount || row.Amount || 0).toFixed(2);
-            const note = row.note || row.Note || "";
-            const date = row.date || row.Date || "";
-
-            tr.innerHTML = `
-              <td class="name-col">${name}</td>
-              <td class="amount-col">$${amount}</td>
-              <td class="note-col">${note}</td>
-              <td class="date-col">${date}</td>
-            `;
-            tbody.appendChild(tr);
-          });
+          hiddenRows.forEach(row => appendRow(tbody, row));
           showMoreBtn.style.display = "none";
         };
       } else {
         showMoreBtn.style.display = "none";
       }
+    }
+
+    function appendRow(tbody, row) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="name-col">${row.name || row.Name || "Anonymous"}</td>
+        <td class="amount-col">$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
+        <td class="note-col">${row.note || row.Note || ""}</td>
+        <td class="date-col">${row.date || row.Date || ""}</td>
+      `;
+      tbody.appendChild(tr);
     }
 
     loadHistory();
