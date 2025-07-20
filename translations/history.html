@@ -123,9 +123,14 @@
           .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date));
 
         renderRows();
+
+        // Send updated height to parent after rendering rows
+        sendHeight();
+
       } catch (err) {
         console.error("Failed to load donation history:", err);
         document.getElementById("historyBody").innerHTML = `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
+        sendHeight();
       }
     }
 
@@ -145,6 +150,7 @@
         showMoreBtn.onclick = () => {
           hiddenRows.forEach(row => appendRow(tbody, row));
           showMoreBtn.style.display = "none";
+          sendHeight(); // Update height after showing more rows
         };
       } else {
         showMoreBtn.style.display = "none";
@@ -161,6 +167,12 @@
         <td class="note-col">${row.note || row.Note || ""}</td>
       `;
       tbody.appendChild(tr);
+    }
+
+    // Send the current content height to parent window for iframe resizing
+    function sendHeight() {
+      const height = document.body.scrollHeight;
+      parent.postMessage({ type: 'resize', height }, '*');
     }
 
     loadHistory();
