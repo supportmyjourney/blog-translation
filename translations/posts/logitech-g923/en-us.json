@@ -24,5 +24,9 @@
   "policyText": "This is a personal donation campaign. All funds will go toward the stated product. Receipts will be posted. Any surplus will be reported.",
   "thanks": "Thank you for supporting my journey! 💘<br /> Every bit of help means a lot.",
   "donateMore": "Show More",
-  "showLess": "Show Less"
+  "showLess": "Show Less",
+  "name": "Name",
+  "amount": "Amount",
+  "dateHeader": "Date",
+  "note": "Note"
 }
