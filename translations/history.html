@@ -9,19 +9,19 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 0;
-      background: transparent;
+      padding: 20px;
+      background: #fff;
     }
 
     .history-wrapper {
       max-width: 600px;
       margin: auto;
-      padding: 20px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed; /* 📐 Ensure predictable column layout */
       font-size: 14px;
     }
 
@@ -29,16 +29,25 @@
       padding: 8px;
       border: 1px solid #ddd;
       text-align: left;
-      word-break: break-word;
+      word-wrap: break-word; /* ✂️ Allow content to wrap in narrow cells */
     }
 
-    th {
-      background-color: #f2f2f2;
+    /* 💵 Fixed width for Amount column */
+    th:nth-child(2), td.amount-col {
+      width: 90px;
+      text-align: right;
     }
 
-    td.date-col {
-      max-width: 120px; /* 📏 Limit width of date column */
-      white-space: normal; /* Allow line wrap for long date strings */
+    /* 🕒 Fixed width and center text for Date column */
+    th:nth-child(4), td.date-col {
+      width: 90px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* 📦 Name and Note columns auto-expand */
+    td.name-col, td.note-col {
+      width: auto;
     }
 
     .show-more {
@@ -61,8 +70,8 @@
         <tr>
           <th id="nameHeader">Name</th>
           <th id="amountHeader">Amount</th>
-          <th id="dateHeader">Date</th>
           <th id="noteHeader">Note</th>
+          <th id="dateHeader">Date</th>
         </tr>
       </thead>
       <tbody id="historyBody"></tbody>
@@ -71,21 +80,17 @@
   </div>
 
   <script>
-    // Get keyword and lang from query string (e.g., ?keyword=abc&lang=en-us)
     const urlParams = new URLSearchParams(window.location.search);
     const keyword = urlParams.get("keyword") || "logitech-g923";
     const lang = urlParams.get("lang") || "en-us";
 
-    // Google Sheet ID and JSON endpoint URLs
     const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
     const donationsUrl = `https://opensheet.elk.sh/${sheetId}/Donations`;
     const i18nUrl = `https://blog-translation.pages.dev/posts/logitech-g923/${lang}.json`;
 
-    // Number of rows to show initially
     const maxInitialRows = 5;
     let allRows = [];
 
-    // Fetch donation data and i18n labels
     async function loadHistory() {
       try {
         const [donationsRes, langRes] = await Promise.all([
@@ -96,69 +101,77 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // 🏷 Replace column headers with translated labels
+        // 🌐 Translate table headers
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
-        document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("noteHeader").textContent = i18n.note || "Note";
+        document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
-        // 🔍 Filter rows by keyword and sort from oldest to newest
+        // 🔍 Filter by keyword and sort by oldest first
         allRows = donations
           .filter(d => d.keyword === keyword || d.Keyword === keyword)
           .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date));
 
         renderRows();
       } catch (err) {
-        console.error("Failed to load donation history:", err);
-        document.getElementById("historyBody").innerHTML = `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
+        console.error("❌ Failed to load donation history:", err);
+        document.getElementById("historyBody").innerHTML =
+          `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
       }
     }
 
-    // Render initial rows and show "Show More" button if needed
     function renderRows() {
       const tbody = document.getElementById("historyBody");
       tbody.innerHTML = "";
 
       const showMoreBtn = document.getElementById("showMoreBtn");
-      const visibleRows = allRows.slice(0, maxInitialRows);      // First 5 rows
-      const hiddenRows = allRows.slice(maxInitialRows);          // Remaining rows
+      const visibleRows = allRows.slice(0, maxInitialRows);
+      const hiddenRows = allRows.slice(maxInitialRows);
 
-      // Render initial rows
+      // 📋 Render visible rows
       visibleRows.forEach(row => {
         const tr = document.createElement("tr");
+        const name = row.name || row.Name || "Anonymous";
+        const amount = parseFloat(row.amount || row.Amount || 0).toFixed(2);
+        const note = row.note || row.Note || "";
+        const date = row.date || row.Date || "";
+
         tr.innerHTML = `
-          <td>${row.name || row.Name || "Anonymous"}</td>
-          <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
-          <td class="date-col">${row.date || row.Date || ""}</td>
-          <td>${row.note || row.Note || ""}</td>
+          <td class="name-col">${name}</td>
+          <td class="amount-col">$${amount}</td>
+          <td class="note-col">${note}</td>
+          <td class="date-col">${date}</td>
         `;
         tbody.appendChild(tr);
       });
 
-      // If there are hidden rows, enable "Show More" button
+      // 🔘 Handle Show More
       if (hiddenRows.length > 0) {
         showMoreBtn.style.display = "block";
         showMoreBtn.onclick = () => {
-          // Render remaining rows when clicked
           hiddenRows.forEach(row => {
             const tr = document.createElement("tr");
+            const name = row.name || row.Name || "Anonymous";
+            const amount = parseFloat(row.amount || row.Amount || 0).toFixed(2);
+            const note = row.note || row.Note || "";
+            const date = row.date || row.Date || "";
+
             tr.innerHTML = `
-              <td>${row.name || row.Name || "Anonymous"}</td>
-              <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
-              <td class="date-col">${row.date || row.Date || ""}</td>
-              <td>${row.note || row.Note || ""}</td>
+              <td class="name-col">${name}</td>
+              <td class="amount-col">$${amount}</td>
+              <td class="note-col">${note}</td>
+              <td class="date-col">${date}</td>
             `;
             tbody.appendChild(tr);
           });
-          showMoreBtn.style.display = "none"; // Hide button after expanded
+          showMoreBtn.style.display = "none";
         };
       } else {
         showMoreBtn.style.display = "none";
       }
     }
 
-    // Run on page load
     loadHistory();
   </script>
 </body>
