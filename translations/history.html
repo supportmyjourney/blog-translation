@@ -12,24 +12,35 @@
       padding: 0;
       background: transparent;
     }
+
     .history-wrapper {
       max-width: 600px;
       margin: auto;
       padding: 20px;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
     }
+
     th, td {
       padding: 8px;
       border: 1px solid #ddd;
       text-align: left;
+      word-break: break-word;
     }
+
     th {
       background-color: #f2f2f2;
     }
+
+    td.date-col {
+      max-width: 120px; /* 📏 Limit width of date column */
+      white-space: normal; /* Allow line wrap for long date strings */
+    }
+
     .show-more {
       display: block;
       margin: 15px auto 0;
@@ -60,17 +71,21 @@
   </div>
 
   <script>
+    // Get keyword and lang from query string (e.g., ?keyword=abc&lang=en-us)
     const urlParams = new URLSearchParams(window.location.search);
     const keyword = urlParams.get("keyword") || "logitech-g923";
     const lang = urlParams.get("lang") || "en-us";
 
+    // Google Sheet ID and JSON endpoint URLs
     const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
     const donationsUrl = `https://opensheet.elk.sh/${sheetId}/Donations`;
     const i18nUrl = `https://blog-translation.pages.dev/posts/logitech-g923/${lang}.json`;
 
+    // Number of rows to show initially
     const maxInitialRows = 5;
     let allRows = [];
 
+    // Fetch donation data and i18n labels
     async function loadHistory() {
       try {
         const [donationsRes, langRes] = await Promise.all([
@@ -81,16 +96,17 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // 🏷 Apply translated headers
+        // 🏷 Replace column headers with translated labels
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("noteHeader").textContent = i18n.note || "Note";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
+        // 🔍 Filter rows by keyword and sort from oldest to newest
         allRows = donations
           .filter(d => d.keyword === keyword || d.Keyword === keyword)
-          .sort((a, b) => new Date(b.date || b.Date) - new Date(a.date || a.Date));
+          .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date));
 
         renderRows();
       } catch (err) {
@@ -99,45 +115,50 @@
       }
     }
 
+    // Render initial rows and show "Show More" button if needed
     function renderRows() {
       const tbody = document.getElementById("historyBody");
       tbody.innerHTML = "";
 
       const showMoreBtn = document.getElementById("showMoreBtn");
-      const visibleRows = allRows.slice(0, maxInitialRows);
-      const hiddenRows = allRows.slice(maxInitialRows);
+      const visibleRows = allRows.slice(0, maxInitialRows);      // First 5 rows
+      const hiddenRows = allRows.slice(maxInitialRows);          // Remaining rows
 
+      // Render initial rows
       visibleRows.forEach(row => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${row.name || row.Name || "Anonymous"}</td>
           <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
-          <td>${row.date || row.Date || ""}</td>
+          <td class="date-col">${row.date || row.Date || ""}</td>
           <td>${row.note || row.Note || ""}</td>
         `;
         tbody.appendChild(tr);
       });
 
+      // If there are hidden rows, enable "Show More" button
       if (hiddenRows.length > 0) {
         showMoreBtn.style.display = "block";
         showMoreBtn.onclick = () => {
+          // Render remaining rows when clicked
           hiddenRows.forEach(row => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
               <td>${row.name || row.Name || "Anonymous"}</td>
               <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
-              <td>${row.date || row.Date || ""}</td>
+              <td class="date-col">${row.date || row.Date || ""}</td>
               <td>${row.note || row.Note || ""}</td>
             `;
             tbody.appendChild(tr);
           });
-          showMoreBtn.style.display = "none";
+          showMoreBtn.style.display = "none"; // Hide button after expanded
         };
       } else {
         showMoreBtn.style.display = "none";
       }
     }
 
+    // Run on page load
     loadHistory();
   </script>
 </body>
