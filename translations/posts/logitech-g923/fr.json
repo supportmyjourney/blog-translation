@@ -1,5 +1,5 @@
 {
-  "title": "🎯 Campagne de financement : Logitech G923 Driving Force + Levier de vitesse",
+  "title": "🎯 Campagne de financement : Logitech G923 Driving Force Racing Wheel + Shifter",
   "date": "🗓️ 8 juillet 2025",
   "goalTitle": "📌 Objectif :",
   "item": "Article :",
@@ -13,7 +13,7 @@
   "donatePlaceholder": "Entrez un montant (USD)",
   "donateBtn": "Faire un don avec PayPal",
   "donateValidation": "Veuillez entrer un montant d'au moins 1 $.",
-  "processing": "Traitement en cours...",
+  "processing": "Traitement...",
   "raisedTitle": "📈 Montant collecté :",
   "received": "Reçu :",
   "historyTitle": "💰 Historique des dons :",
@@ -23,10 +23,10 @@
   "note": "Note",
   "dateHeader": "Date",
   "proofTitle": "📷 Preuve d'achat :",
-  "proofText": "Après avoir atteint l'objectif et acheté le produit, je publierai des photos ou vidéos réelles comme preuve.",
+  "proofText": "Après avoir atteint l'objectif et acheté le produit, je publierai des photos ou vidéos réelles du déballage comme preuve.",
   "policyTitle": "📜 Politique de transparence",
-  "policyText": "Ceci est une campagne de don personnelle. Tous les fonds iront à l'achat du produit mentionné. Les reçus seront publiés. Tout excédent sera signalé.",
-  "thanks": "Merci de soutenir mon parcours ! 💘<br /> Chaque petit geste compte.",
+  "policyText": "Il s'agit d'une campagne de dons personnelle. Tous les fonds seront consacrés au produit indiqué. Les reçus seront publiés. Tout surplus sera signalé.",
+  "thanks": "Merci de soutenir mon parcours ! 💘<br /> Chaque geste compte énormément.",
   "donateMore": "Afficher plus",
   "showLess": "Afficher moins"
 }
