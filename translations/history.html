@@ -99,6 +99,12 @@
     const maxInitialRows = 5;
     let allRows = [];
 
+    // Send height of iframe content to parent window
+    function sendHeight() {
+      const height = document.body.scrollHeight;
+      parent.postMessage({ type: 'resize', height }, '*');
+    }
+
     // Load donation data and language
     async function loadHistory() {
       try {
@@ -123,59 +129,4 @@
           .sort((a, b) => new Date(a.date || a.Date) - new Date(b.date || b.Date));
 
         renderRows();
-
-        // Send updated height to parent after rendering rows
-        sendHeight();
-
-      } catch (err) {
-        console.error("Failed to load donation history:", err);
-        document.getElementById("historyBody").innerHTML = `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
-        sendHeight();
-      }
-    }
-
-    // Render visible rows and handle "show more"
-    function renderRows() {
-      const tbody = document.getElementById("historyBody");
-      tbody.innerHTML = "";
-
-      const showMoreBtn = document.getElementById("showMoreBtn");
-      const visibleRows = allRows.slice(0, maxInitialRows);
-      const hiddenRows = allRows.slice(maxInitialRows);
-
-      visibleRows.forEach(row => appendRow(tbody, row));
-
-      if (hiddenRows.length > 0) {
-        showMoreBtn.style.display = "block";
-        showMoreBtn.onclick = () => {
-          hiddenRows.forEach(row => appendRow(tbody, row));
-          showMoreBtn.style.display = "none";
-          sendHeight(); // Update height after showing more rows
-        };
-      } else {
-        showMoreBtn.style.display = "none";
-      }
-    }
-
-    // Append single row to the table body
-    function appendRow(tbody, row) {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td class="name-col">${row.name || row.Name || "Anonymous"}</td>
-        <td class="amount-col">$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
-        <td class="date-col">${row.date || row.Date || ""}</td>
-        <td class="note-col">${row.note || row.Note || ""}</td>
-      `;
-      tbody.appendChild(tr);
-    }
-
-    // Send the current content height to parent window for iframe resizing
-    function sendHeight() {
-      const height = document.body.scrollHeight;
-      parent.postMessage({ type: 'resize', height }, '*');
-    }
-
-    loadHistory();
-  </script>
-</body>
-</html>
+      } catch
