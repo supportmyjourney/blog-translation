@@ -10,7 +10,7 @@
       font-family: sans-serif;
       margin: 0;
       padding: 20px;
-      background: #fff;
+      background: transparent; /* Transparent background for iframe */
     }
     .progress-wrapper {
       max-width: 500px;
@@ -26,12 +26,19 @@
       background-color: #eee;
       border-radius: 20px;
       overflow: hidden;
+      position: relative;
     }
     .progress-fill {
       height: 100%;
       background-color: #28a745;
       width: 0;
       transition: width 0.5s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
     }
     .progress-text {
       margin-top: 6px;
@@ -44,7 +51,7 @@
   <div class="progress-wrapper">
     <div class="progress-title" id="progressTitle">📈 Amount Raised</div>
     <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
+      <div class="progress-fill" id="progressFill">0%</div>
     </div>
     <div class="progress-text" id="progressText">$0 / $0</div>
   </div>
@@ -82,7 +89,10 @@
         const percent = goal > 0 ? Math.min(100, (raised / goal) * 100) : 0;
 
         // Update DOM
-        document.getElementById("progressFill").style.width = percent + "%";
+        const progressFill = document.getElementById("progressFill");
+        progressFill.style.width = percent + "%";
+        progressFill.textContent = `${percent.toFixed(0)}%`;
+
         document.getElementById("progressText").textContent = `$${raised.toFixed(2)} / $${goal.toFixed(2)}`;
         document.getElementById("progressTitle").textContent = i18n.raisedTitle || "Amount Raised";
       } catch (err) {
