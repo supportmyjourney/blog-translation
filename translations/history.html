@@ -51,6 +51,7 @@
           <th id="nameHeader">Name</th>
           <th id="amountHeader">Amount</th>
           <th id="dateHeader">Date</th>
+          <th id="noteHeader">Note</th>
         </tr>
       </thead>
       <tbody id="historyBody"></tbody>
@@ -80,9 +81,11 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
+        // 🏷 Apply translated headers
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
+        document.getElementById("noteHeader").textContent = i18n.note || "Note";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
         allRows = donations
@@ -92,7 +95,7 @@
         renderRows();
       } catch (err) {
         console.error("Failed to load donation history:", err);
-        document.getElementById("historyBody").innerHTML = `<tr><td colspan="3">Failed to load donation history.</td></tr>`;
+        document.getElementById("historyBody").innerHTML = `<tr><td colspan="4">Failed to load donation history.</td></tr>`;
       }
     }
 
@@ -110,6 +113,7 @@
           <td>${row.name || row.Name || "Anonymous"}</td>
           <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
           <td>${row.date || row.Date || ""}</td>
+          <td>${row.note || row.Note || ""}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -123,6 +127,7 @@
               <td>${row.name || row.Name || "Anonymous"}</td>
               <td>$${parseFloat(row.amount || row.Amount || 0).toFixed(2)}</td>
               <td>${row.date || row.Date || ""}</td>
+              <td>${row.note || row.Note || ""}</td>
             `;
             tbody.appendChild(tr);
           });
