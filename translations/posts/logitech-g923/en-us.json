@@ -18,15 +18,15 @@
   "received": "Received:",
   "historyTitle": "💰 Donation History:",
   "noDonations": "No donations yet. Be the first to contribute!",
+  "name": "Name",
+  "amount": "Amount",
+  "note": "Note",
+  "dateHeader": "Date",
   "proofTitle": "📷 Proof of Purchase:",
   "proofText": "After reaching the goal and purchasing the product, I will upload real photos or videos of the unboxing as proof.",
   "policyTitle": "📜 Transparency Policy",
   "policyText": "This is a personal donation campaign. All funds will go toward the stated product. Receipts will be posted. Any surplus will be reported.",
   "thanks": "Thank you for supporting my journey! 💘<br /> Every bit of help means a lot.",
   "donateMore": "Show More",
-  "showLess": "Show Less",
-  "name": "Name",
-  "amount": "Amount",
-  "dateHeader": "Date",
-  "note": "Note"
+  "showLess": "Show Less"
 }
