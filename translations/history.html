@@ -6,45 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donation History</title>
   <style>
-    /* Base styling for iframe compatibility */
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 20px;
-      background: transparent; /* Transparent background for iframe */
+      padding: 0;
+      background: transparent;
     }
-
-    /* Wrapper for the donation history section */
     .history-wrapper {
       max-width: 600px;
       margin: auto;
+      padding: 20px;
     }
-
-    /* Title above the table */
-    .history-title {
-      font-size: 20px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    /* Table layout and style */
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
     }
-
     th, td {
       padding: 8px;
       border: 1px solid #ddd;
       text-align: left;
     }
-
     th {
       background-color: #f2f2f2;
     }
-
-    /* Show more button style */
     .show-more {
       display: block;
       margin: 15px auto 0;
@@ -60,7 +45,6 @@
 </head>
 <body>
   <div class="history-wrapper">
-    <div class="history-title" id="historyTitle">💰 Donation History</div>
     <table id="historyTable">
       <thead>
         <tr>
@@ -75,12 +59,10 @@
   </div>
 
   <script>
-    // Parse query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const keyword = urlParams.get("keyword") || "logitech-g923";
     const lang = urlParams.get("lang") || "en-us";
 
-    // Define Google Sheet and translation sources
     const sheetId = "1AbzUCm0kw5YIVlWHkM1--G2s1hyPNFJr-p76zcQev60";
     const donationsUrl = `https://opensheet.elk.sh/${sheetId}/Donations`;
     const i18nUrl = `https://blog-translation.pages.dev/posts/logitech-g923/${lang}.json`;
@@ -88,7 +70,6 @@
     const maxInitialRows = 5;
     let allRows = [];
 
-    // Load donation history and translation
     async function loadHistory() {
       try {
         const [donationsRes, langRes] = await Promise.all([
@@ -99,14 +80,11 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // Apply translated text
-        document.getElementById("historyTitle").textContent = i18n.historyTitle || "Donation History";
         document.getElementById("nameHeader").textContent = i18n.name || "Name";
         document.getElementById("amountHeader").textContent = i18n.amount || "Amount";
         document.getElementById("dateHeader").textContent = i18n.date || "Date";
         document.getElementById("showMoreBtn").textContent = i18n.showMore || "Show More";
 
-        // Filter and sort donations by keyword and date
         allRows = donations
           .filter(d => d.keyword === keyword || d.Keyword === keyword)
           .sort((a, b) => new Date(b.date || b.Date) - new Date(a.date || a.Date));
@@ -118,7 +96,6 @@
       }
     }
 
-    // Render visible donation rows
     function renderRows() {
       const tbody = document.getElementById("historyBody");
       tbody.innerHTML = "";
@@ -127,7 +104,6 @@
       const visibleRows = allRows.slice(0, maxInitialRows);
       const hiddenRows = allRows.slice(maxInitialRows);
 
-      // Render initial rows
       visibleRows.forEach(row => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -138,7 +114,6 @@
         tbody.appendChild(tr);
       });
 
-      // Handle "Show More" if there are hidden rows
       if (hiddenRows.length > 0) {
         showMoreBtn.style.display = "block";
         showMoreBtn.onclick = () => {

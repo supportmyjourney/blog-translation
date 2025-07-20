@@ -9,17 +9,13 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 20px;
-      background: transparent; /* Transparent background for iframe */
+      padding: 0;
+      background: transparent;
     }
     .progress-wrapper {
       max-width: 500px;
       margin: auto;
       text-align: center;
-    }
-    .progress-title {
-      font-size: 20px;
-      margin-bottom: 10px;
     }
     .progress-bar {
       height: 24px;
@@ -33,10 +29,10 @@
       background-color: #28a745;
       width: 0;
       transition: width 0.5s ease-in-out;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
       font-size: 13px;
       font-weight: bold;
     }
@@ -49,7 +45,6 @@
 </head>
 <body>
   <div class="progress-wrapper">
-    <div class="progress-title" id="progressTitle">📈 Amount Raised</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progressFill">0%</div>
     </div>
@@ -78,23 +73,17 @@
         const donations = await donationsRes.json();
         const i18n = await langRes.json();
 
-        // Find the target row matching the keyword
         const target = targets.find(t => t.keyword === keyword || t.Keyword === keyword);
         const goal = parseFloat(target?.goal || target?.Goal || 0);
 
-        // Filter donations by keyword and sum the amount
         const filteredDonations = donations.filter(d => d.keyword === keyword || d.Keyword === keyword);
         const raised = filteredDonations.reduce((sum, d) => sum + parseFloat(d.amount || d.Amount || 0), 0);
 
         const percent = goal > 0 ? Math.min(100, (raised / goal) * 100) : 0;
 
-        // Update DOM
-        const progressFill = document.getElementById("progressFill");
-        progressFill.style.width = percent + "%";
-        progressFill.textContent = `${percent.toFixed(0)}%`;
-
+        document.getElementById("progressFill").style.width = percent + "%";
+        document.getElementById("progressFill").textContent = percent.toFixed(0) + "%";
         document.getElementById("progressText").textContent = `$${raised.toFixed(2)} / $${goal.toFixed(2)}`;
-        document.getElementById("progressTitle").textContent = i18n.raisedTitle || "Amount Raised";
       } catch (err) {
         console.error("Failed to load donation progress:", err);
         document.getElementById("progressText").textContent = "Error loading progress.";
