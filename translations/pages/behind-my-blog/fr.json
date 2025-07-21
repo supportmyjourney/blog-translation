@@ -1,30 +1,31 @@
 {
   "title": "📘 Derrière mon blog",
   "paragraphs": [
-    "J’ai créé cette page pour documenter chaque étape dans la création du blog \"Support My Journey\" – un espace où je partage mes rêves et espère recevoir le soutien de la communauté.",
-    "Depuis les premiers jours à apprendre à créer un blog, personnaliser la mise en page, connecter PayPal et configurer le bouton de don... chaque étape a été une expérience significative. Je voulais garder une trace de ce parcours personnel et le partager avec d’autres personnes ayant un chemin similaire."
+    "J'ai créé cette page pour documenter chaque étape de la création de mon blog \"Support My Journey\" – un espace où je partage mes rêves et espère recevoir le soutien de la communauté.",
+    "Depuis les premiers pas pour apprendre à créer un blog, personnaliser sa mise en page, connecter PayPal et configurer le bouton de don... chaque étape a été une expérience significative. Je voulais garder une trace de ce parcours comme un rappel personnel et le partager avec ceux qui suivent un chemin similaire."
   ],
   "milestones_title": "🗓️ Étapes clés",
   "milestones": [
-    "5 juillet 2025 – Idée de créer un blog personnel de collecte de fonds.",
-    "5 juillet 2025 – Création du blog sur Blogspot pour lever des fonds pour de l’équipement, recherche d’un thème adapté.",
-    "6 juillet 2025 – Choix du nom du blog \"Support My Journey\".",
-    "6 juillet 2025 – Création du logo et du favicon dans des tons bleu et blanc.",
-    "6 juillet 2025 – Rédaction du premier article de campagne (Logitech G923).",
+    "5 juillet 2025 – A eu l’idée de créer un blog de financement personnel.",
+    "5 juillet 2025 – Création du site Blogspot pour le financement de matériel, et recherche de thème.",
+    "6 juillet 2025 – Choix du nom du blog : \"Support My Journey\".",
+    "6 juillet 2025 – Conception du logo et du favicon du site avec des tons bleu et blanc.",
+    "6 juillet 2025 – Rédaction du premier post de collecte de fonds (Logitech G923).",
     "6 juillet 2025 – Inscription à PayPal et création du bouton de don.",
-    "7 juillet 2025 – Intégration de la barre de progression, de l’historique des dons et d’une politique de transparence.",
-    "8 juillet 2025 – Achat du domaine supportmyjourney.com et liaison à Blogspot. Configuration DNS via Cloudflare.",
-    "9 juillet 2025 – Ajout de la prise en charge multilingue dans les articles avec widget Google Translate, optimisé pour mobile.",
-    "9 juillet 2025 – Amélioration du système de traduction dans les articles.",
-    "10 juillet 2025 – Finalisation du système de traduction et retrait du widget Google Translate à cause de conflits.",
-    "10 juillet 2025 – Pause... je continuerai bientôt avec une mise à jour automatique des dons...",
-    "11 juillet 2025 – Ajout du multilingue aux pages d'information et au widget À propos.",
-    "12 juillet 2025 – Correction des bugs d'affichage sur petits écrans.",
+    "7 juillet 2025 – Intégration de la barre de progression, de l’historique des dons et de la politique de transparence.",
+    "8 juillet 2025 – Achat du domaine supportmyjourney.com et connexion à Blogspot. Configuration de Cloudflare pour le bon fonctionnement du site et des mails.",
+    "9 juillet 2025 – Ajout de la prise en charge multilingue dans les articles, en plus du widget Google Translate, et optimisation mobile.",
+    "9 juillet 2025 – Amélioration continue du système de traduction intégré.",
+    "10 juillet 2025 – Finalisation du système de traduction, suppression de Google Translate à cause des conflits.",
+    "10 juillet 2025 – Petite pause... Je poursuivrai bientôt avec la mise à jour automatique des dons...",
+    "11 juillet 2025 – Ajout de la traduction des pages de notification et du widget À propos.",
+    "12 juillet 2025 – Correction des problèmes d’affichage sur les petits écrans.",
     "13 juillet 2025 – Ajout des langues coréenne et portugaise.",
-    "13 juillet 2025 – Le site prend désormais en charge 8 langues (traduction par IA). Cela a considérablement augmenté la taille du HTML. J'ai donc migré le contenu vers des fichiers JSON hébergés (GitHub + Cloudflare Pages).",
-    "14 juillet 2025 – Problèmes avec le sélecteur de langue. J’ai unifié le tout sous un bouton compact avec menu déroulant.",
-    "15 juillet 2025 – Optimisation du SEO pour faciliter la découverte du site.",
-    "15 juillet 2025 – Test de la barre de progression automatique des dons. La liste est synchronisée via Google Sheets, les données PayPal sont saisies manuellement pour des raisons de sécurité."
+    "13 juillet 2025 – Le site prend désormais en charge 8 langues (traduction par IA). Le contenu HTML étant devenu trop long, j’ai transféré les textes vers des fichiers JSON externes (via GitHub + Cloudflare Pages).",
+    "14 juillet 2025 – Résolution des problèmes du sélecteur de langue. Un bouton unique avec menu déroulant a été adopté pour plus de clarté.",
+    "15 juillet 2025 – Optimisation du SEO pour améliorer la visibilité du site.",
+    "15 juillet 2025 – Test de la barre de progression automatique. La liste des dons est synchronisée via Google Sheets. Les données PayPal doivent encore être saisies manuellement pour des raisons de sécurité.",
+    "20 juillet 2025 – La barre de progression et l’historique des dons sont désormais mis à jour automatiquement. Les données proviennent de Google Sheet et prennent en charge 8 langues. Je suis en train de tester avec des entrées fictives, qui seront supprimées dès que des dons réels seront reçus."
   ],
-  "footer": "Merci d’avoir visité cette page. J’espère que ce petit voyage vous apportera inspiration ou encouragement."
+  "footer": "Merci d’avoir visité cette page. J’espère que ce petit parcours vous apportera inspiration ou motivation."
 }

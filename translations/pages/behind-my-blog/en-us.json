@@ -1,30 +1,31 @@
 {
   "title": "📘 Behind My Blog",
   "paragraphs": [
-    "I created this page to document every step I took in building the \"Support My Journey\" blog – a space where I share my dreams and hope to receive support from the community.",
-    "From the early days of learning how to start a blog, customizing the layout, connecting PayPal, and setting up the donation button... each step was a meaningful experience. I wanted to record it as a personal reminder and share it with anyone who might be on a similar journey."
+    "I created this page to document every step I took while building the 'Support My Journey' blog — a space where I share my dreams and seek support from kind-hearted visitors.",
+    "From the very beginning — learning how to start a blog, customizing the layout, integrating PayPal, and setting up the donation button — each step has been a meaningful milestone. I want to keep track of it as a personal reminder and share it with anyone on a similar path."
   ],
   "milestones_title": "🗓️ Key Milestones",
   "milestones": [
-    "July 5, 2025 – Came up with the idea to create a personal fundraising blog.",
-    "July 5, 2025 – Created the Blogspot site for fundraising equipment and searched for a theme.",
-    "July 6, 2025 – Chose the blog name \"Support My Journey\".",
-    "July 6, 2025 – Designed the website logo and favicon with blue-white tones.",
-    "July 6, 2025 – Wrote the first fundraising goal post (Logitech G923).",
-    "July 6, 2025 – Registered PayPal and created the donation button.",
+    "July 5, 2025 – Came up with the idea of creating a personal fundraising blog.",
+    "July 5, 2025 – Created a Blogspot site to fundraise for essential gear and searched for a suitable theme.",
+    "July 6, 2025 – Chose the name 'Support My Journey' for the blog.",
+    "July 6, 2025 – Designed the website’s logo and favicon with a blue-and-white color palette.",
+    "July 6, 2025 – Wrote the first fundraising post (Logitech G923).",
+    "July 6, 2025 – Registered PayPal and created a Donate button.",
     "July 7, 2025 – Integrated progress bar, donation history, and transparency policy.",
-    "July 8, 2025 – Purchased the domain supportmyjourney.com and connected it to Blogspot. Configured DNS (Cloudflare) so Blogspot and Mail could work properly.",
-    "July 9, 2025 – Added multilingual support inside posts alongside Google Translate widget, optimized for mobile.",
-    "July 9, 2025 – Continued refining the in-post translation system.",
-    "July 10, 2025 – Finalized the translation system and removed Google Translate due to conflicts.",
-    "July 10, 2025 – Took a break... I'll continue updating with automatic donation tracking soon...",
+    "July 8, 2025 – Purchased the domain supportmyjourney.com and connected it to Blogspot. Configured Cloudflare DNS to ensure Blogspot and email worked smoothly.",
+    "July 9, 2025 – Added multilingual support within posts alongside the Google Translate widget, and optimized for mobile devices.",
+    "July 9, 2025 – Continued refining the in-post multilingual system.",
+    "July 10, 2025 – Finalized in-post translation and removed the Google Translate widget due to conflicts.",
+    "July 10, 2025 – Took a short break... planning to implement automatic tracking features soon.",
     "July 11, 2025 – Added language support for notification pages and the About widget.",
-    "July 12, 2025 – Fixed display issues on small screen devices.",
-    "July 13, 2025 – Added Korean and Portuguese as new languages.",
-    "July 13, 2025 – Now the website supports 8 languages (translated using AI). This increased the length of in-post HTML significantly. I decided to move all content into external JSON files (via GitHub + Cloudflare Pages) for easier management.",
-    "July 14, 2025 – Faced issues with the language switcher. I standardized it into a single button with a sliding dropdown for better UI and scalability.",
-    "July 15, 2025 – Optimized SEO so more people can find this site.",
-    "July 15, 2025 – Testing auto-updating donation progress bar. Donation list is synced via Google Sheets, but PayPal data still needs to be manually entered due to security and simplicity reasons."
+    "July 12, 2025 – Fixed layout issues on small screen devices.",
+    "July 13, 2025 – Added Korean and Portuguese as new supported languages.",
+    "July 13, 2025 – The site now supports 8 languages (translated with AI). Since in-post HTML became too long, I moved the content into external JSON files hosted via GitHub + Cloudflare Pages.",
+    "July 14, 2025 – Unified the language selector into a single button with a dropdown effect for better scalability.",
+    "July 15, 2025 – Optimized SEO so more people can find this website.",
+    "July 15, 2025 – Started testing the auto-updating donation progress bar. The donation list syncs via Google Sheets, while PayPal data must be entered manually due to security and Blogspot limitations.",
+    "July 20, 2025 – Successfully integrated the auto-updating progress bar and live donation history. Data is fetched from Google Sheets and supports 8 languages. Currently testing using placeholder donations (Test 1–9); these will be removed once real contributions come in."
   ],
-  "footer": "Thank you for visiting this page. I hope this little journey gives you some insights or encouragement."
+  "footer": "Thank you for visiting my website. I hope this small journey provides you with insights or encouragement. I'm not sure if this site will help me reach my goal, but for now, I'm focused on making it work as best as I can."
 }

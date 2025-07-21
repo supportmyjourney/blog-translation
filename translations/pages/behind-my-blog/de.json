@@ -1,30 +1,31 @@
 {
   "title": "📘 Hinter meinem Blog",
   "paragraphs": [
-    "Ich habe diese Seite erstellt, um jeden Schritt zu dokumentieren, den ich beim Aufbau des Blogs \"Support My Journey\" unternommen habe – ein Ort, an dem ich meine Träume teile und auf Unterstützung aus der Gemeinschaft hoffe.",
-    "Vom Erlernen der Blogerstellung über die Anpassung des Layouts, die Verbindung mit PayPal bis hin zur Einrichtung des Spendenbuttons... jeder Schritt war eine bedeutungsvolle Erfahrung. Ich wollte alles als persönliche Erinnerung festhalten und mit anderen teilen, die einen ähnlichen Weg gehen."
+    "Ich habe diese Seite erstellt, um jeden Schritt beim Aufbau meines Blogs \"Support My Journey\" festzuhalten – ein Ort, an dem ich meine Träume teile und auf Unterstützung aus der Gemeinschaft hoffe.",
+    "Vom ersten Lernen, wie man einen Blog startet, über das Anpassen des Layouts, das Verbinden von PayPal bis zur Einrichtung des Spenden-Buttons... jeder Schritt war eine bedeutende Erfahrung. Ich möchte dies als persönliche Erinnerung dokumentieren und mit anderen teilen, die ähnliche Ziele verfolgen."
   ],
   "milestones_title": "🗓️ Wichtige Meilensteine",
   "milestones": [
-    "5. Juli 2025 – Idee für einen persönlichen Spendenblog entwickelt.",
-    "5. Juli 2025 – Blogspot-Seite zur Spendenaktion für Ausrüstung erstellt und nach einem passenden Thema gesucht.",
-    "6. Juli 2025 – Blogname \"Support My Journey\" gewählt.",
-    "6. Juli 2025 – Logo und Favicon der Website in Blau-Weiß entworfen.",
-    "6. Juli 2025 – Erster Beitrag zur Spendenaktion verfasst (Logitech G923).",
-    "6. Juli 2025 – Bei PayPal registriert und Spendenbutton erstellt.",
-    "7. Juli 2025 – Fortschrittsbalken, Spendenverlauf und Transparenzrichtlinie integriert.",
-    "8. Juli 2025 – Domain supportmyjourney.com gekauft und mit Blogspot verbunden. DNS (Cloudflare) konfiguriert.",
-    "9. Juli 2025 – Mehrsprachige Unterstützung in Beiträgen hinzugefügt und für Mobilgeräte optimiert.",
-    "9. Juli 2025 – Weiterentwicklung des In-Post-Übersetzungssystems.",
+    "5. Juli 2025 – Idee geboren, einen persönlichen Spenden-Blog zu starten.",
+    "5. Juli 2025 – Blogspot-Seite zur Finanzierung von Ausrüstung erstellt und nach einem Design gesucht.",
+    "6. Juli 2025 – Der Blogname \"Support My Journey\" wurde gewählt.",
+    "6. Juli 2025 – Logo und Favicon des Blogs in Blau-Weiß entworfen.",
+    "6. Juli 2025 – Ersten Beitrag mit Spendenziel veröffentlicht (Logitech G923).",
+    "6. Juli 2025 – PayPal registriert und Spenden-Button eingerichtet.",
+    "7. Juli 2025 – Fortschrittsanzeige, Spendenverlauf und Transparenzrichtlinie integriert.",
+    "8. Juli 2025 – Domain supportmyjourney.com gekauft und mit Blogspot verbunden. DNS (Cloudflare) eingerichtet.",
+    "9. Juli 2025 – Mehrsprachige Unterstützung in Beiträgen sowie Google Translate-Widget hinzugefügt. Für Mobilgeräte optimiert.",
+    "9. Juli 2025 – Weitere Optimierungen des Übersetzungssystems.",
     "10. Juli 2025 – Übersetzungssystem abgeschlossen und Google Translate wegen Konflikten entfernt.",
-    "10. Juli 2025 – Eine Pause eingelegt... bald folgt ein automatisches Spendentracking...",
-    "11. Juli 2025 – Sprachunterstützung für Info-Seiten und das About-Widget hinzugefügt.",
+    "10. Juli 2025 – Eine Pause eingelegt... automatische Spendenverfolgung kommt bald.",
+    "11. Juli 2025 – Sprachunterstützung für Benachrichtigungsseiten und das About-Widget hinzugefügt.",
     "12. Juli 2025 – Anzeigeprobleme auf kleinen Bildschirmen behoben.",
     "13. Juli 2025 – Koreanisch und Portugiesisch als neue Sprachen hinzugefügt.",
-    "13. Juli 2025 – Jetzt unterstützt die Website 8 Sprachen (übersetzt mit KI). Dadurch wurde der HTML-Code im Beitrag sehr lang. Ich habe beschlossen, die Inhalte in externe JSON-Dateien (GitHub + Cloudflare Pages) auszulagern.",
-    "14. Juli 2025 – Probleme mit dem Sprachumschalter. Ich habe ihn in eine kompakte Schaltfläche mit Slide-Menü umgewandelt.",
-    "15. Juli 2025 – SEO optimiert, damit mehr Leute die Seite finden können.",
-    "15. Juli 2025 – Teste derzeit automatisch aktualisierte Fortschrittsanzeige. Die Spendenliste wird über Google Sheets synchronisiert. PayPal-Daten werden aus Sicherheitsgründen manuell übertragen."
+    "13. Juli 2025 – Die Website unterstützt jetzt 8 Sprachen (mit KI übersetzt). Aufgrund des langen HTML-Codes wurde der Inhalt in externe JSON-Dateien (GitHub + Cloudflare Pages) ausgelagert.",
+    "14. Juli 2025 – Probleme mit dem Sprachumschalter gelöst; jetzt ein Button mit Dropdown für bessere Benutzerfreundlichkeit.",
+    "15. Juli 2025 – SEO verbessert, damit mehr Leute die Seite finden können.",
+    "15. Juli 2025 – Automatische Aktualisierung des Spendenbalkens getestet. PayPal-Daten müssen aus Sicherheitsgründen manuell eingegeben werden.",
+    "20. Juli 2025 – Fortschrittsbalken und Spendenverlauf aktualisieren sich nun automatisch. Daten kommen aus Google Sheets und sind in 8 Sprachen verfügbar. Testeinträge (Test 1–9) werden bei echten Spenden ersetzt."
   ],
-  "footer": "Danke für den Besuch dieser Seite. Ich hoffe, diese kleine Reise gibt Ihnen Einblicke oder Motivation."
+  "footer": "Vielen Dank für deinen Besuch. Ich hoffe, diese kleine Reise inspiriert dich oder gibt dir wertvolle Einblicke. Ob ich mein Ziel erreiche oder nicht – mein Ziel ist, dass diese Seite gut funktioniert."
 }

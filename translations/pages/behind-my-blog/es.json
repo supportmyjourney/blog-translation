@@ -1,30 +1,31 @@
 {
-  "title": "📘 Detrás de mi blog",
+  "title": "📘 Detrás de Mi Blog",
   "paragraphs": [
-    "Creé esta página para documentar cada paso que tomé al construir el blog \"Support My Journey\" – un espacio donde comparto mis sueños y espero recibir apoyo de la comunidad.",
-    "Desde aprender a crear un blog, personalizar el diseño, conectar PayPal y configurar el botón de donación... cada paso fue una experiencia significativa. Quería registrar todo como un recordatorio personal y compartirlo con quienes estén en un camino similar."
+    "Creé esta página para documentar cada paso en la construcción de mi blog \"Support My Journey\" – un espacio donde comparto mis sueños y busco el apoyo solidario de la comunidad.",
+    "Desde los primeros días aprendiendo a iniciar un blog, personalizando el diseño, conectando PayPal y configurando el botón de donación... cada paso fue una experiencia valiosa. Quería registrarlo como un recuerdo personal y compartirlo con quienes emprendan un camino similar."
   ],
-  "milestones_title": "🗓️ Hitos clave",
+  "milestones_title": "🗓️ Hitos Clave",
   "milestones": [
-    "5 de julio de 2025 – Surgió la idea de crear un blog personal para recaudar fondos.",
-    "5 de julio de 2025 – Creación del blog en Blogspot para recaudar fondos para equipos, búsqueda de una plantilla adecuada.",
-    "6 de julio de 2025 – Elegí el nombre del blog \"Support My Journey\".",
-    "6 de julio de 2025 – Diseñé el logo y el favicon en tonos azul y blanco.",
-    "6 de julio de 2025 – Escribí la primera entrada de recaudación de fondos (Logitech G923).",
-    "6 de julio de 2025 – Me registré en PayPal y creé el botón de donación.",
-    "7 de julio de 2025 – Integré la barra de progreso, el historial de donaciones y la política de transparencia.",
-    "8 de julio de 2025 – Compré el dominio supportmyjourney.com y lo conecté a Blogspot. Configuré DNS (Cloudflare) para su correcto funcionamiento.",
-    "9 de julio de 2025 – Añadí soporte multilingüe dentro de las entradas junto con el widget de Google Translate, optimizado para móviles.",
-    "9 de julio de 2025 – Continué mejorando el sistema multilingüe dentro de las entradas.",
-    "10 de julio de 2025 – Finalicé el sistema y desactivé el widget de Google Translate por conflictos.",
-    "10 de julio de 2025 – Descanso... Pronto seguiré con el seguimiento automático de donaciones...",
-    "11 de julio de 2025 – Añadí traducción a páginas informativas y al widget Acerca de.",
-    "12 de julio de 2025 – Corregí errores de visualización en pantallas pequeñas.",
-    "13 de julio de 2025 – Añadí coreano y portugués como nuevos idiomas.",
-    "13 de julio de 2025 – El sitio ya admite 8 idiomas (traducidos con IA). Esto alargó demasiado el HTML, así que comencé a usar archivos JSON alojados en CDN.",
-    "14 de julio de 2025 – Surgieron problemas con el selector de idioma. Lo convertí en un botón con menú desplegable para mayor comodidad.",
-    "15 de julio de 2025 – Optimizando SEO para que más personas encuentren el sitio.",
-    "15 de julio de 2025 – Probando barra de progreso automática. Lista de donaciones sincronizada con Google Sheets, pero aún ingreso manual desde PayPal por seguridad."
+    "5 de julio de 2025 – Nació la idea de crear un blog de recaudación de fondos personal.",
+    "5 de julio de 2025 – Se creó el sitio en Blogspot para recaudar fondos para equipos y se buscó una plantilla adecuada.",
+    "6 de julio de 2025 – Se eligió el nombre del blog \"Support My Journey\".",
+    "6 de julio de 2025 – Se diseñó el logotipo y favicon en tonos azul y blanco.",
+    "6 de julio de 2025 – Se publicó la primera entrada con el objetivo de recaudación (Logitech G923).",
+    "6 de julio de 2025 – Se registró PayPal y se creó el botón de donación.",
+    "7 de julio de 2025 – Se integró barra de progreso, historial de donaciones y política de transparencia.",
+    "8 de julio de 2025 – Se compró el dominio supportmyjourney.com y se conectó con Blogspot. DNS configurado (Cloudflare).",
+    "9 de julio de 2025 – Se añadió soporte multilingüe dentro de los posts y se integró el widget de Google Translate. Optimizado para móviles.",
+    "9 de julio de 2025 – Se continuó afinando el sistema de traducción en los posts.",
+    "10 de julio de 2025 – Se finalizó el sistema de traducción y se eliminó Google Translate por conflictos.",
+    "10 de julio de 2025 – Pausa breve... seguiré con el seguimiento automático de donaciones.",
+    "11 de julio de 2025 – Soporte de idioma añadido a páginas de notificación y widget Acerca de.",
+    "12 de julio de 2025 – Se solucionaron errores de visualización en pantallas pequeñas.",
+    "13 de julio de 2025 – Añadidos idiomas coreano y portugués.",
+    "13 de julio de 2025 – El sitio ahora tiene soporte para 8 idiomas (usando traducción automática). El HTML creció mucho, así que migré el contenido a archivos JSON externos (GitHub + Cloudflare Pages).",
+    "14 de julio de 2025 – Se solucionaron problemas con el conmutador de idioma, se consolidó en un solo botón con menú desplegable.",
+    "15 de julio de 2025 – Optimización SEO realizada para facilitar el descubrimiento del blog.",
+    "15 de julio de 2025 – Pruebas del progreso automático de donaciones. Los datos de Google Sheets funcionan, pero PayPal aún debe ingresarse manualmente por seguridad.",
+    "20 de julio de 2025 – Se integraron con éxito la barra de progreso automática y el historial de donaciones. Los datos provienen de Google Sheets y están disponibles en 8 idiomas. Actualmente hay datos de prueba (Test 1–9); se actualizarán con donaciones reales."
   ],
-  "footer": "Gracias por visitar esta página. Espero que este pequeño viaje te inspire o motive de alguna manera."
+  "footer": "Gracias por visitar esta página. Espero que este pequeño viaje te inspire o te brinde ideas útiles. No sé si alcanzaré mis metas, pero al menos quiero que esta web funcione bien."
 }
